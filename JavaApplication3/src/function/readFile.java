@@ -13,11 +13,27 @@ package function;
 import java.io.*;
 
 public class readFile {
-    
+    /**
+     * Initaialsierung der Komponenten
+     * zum Einlesen der Cocktaildatenbank
+     */
     private FileReader CocktailEinlesen;
     private BufferedReader InputCocktailInfo;
+    /**
+     * Initialisierung der kompontente zum Einliesen
+     * der Rezepte
+     */
     private FileReader RezeptEinlesen;
     private BufferedReader InputRezeptInfo;
+    /**
+     * Initialisierung der Komponten um den Status (Menge der ausgefüllten 
+     * Getränke, zuletzt geladenes Rezept) der Maschine einzulesen 
+     */
+    private FileReader StatusEinlesen;
+    private BufferedReader InputStatus;
+    
+    private String StrRezeptauswahl;
+    private String[] StringStatus=new String [17];
 
    
       
@@ -25,27 +41,61 @@ public class readFile {
      *
      * @param CocktailID_Input
      */
-    public readFile(String StrRezeptauswahl){
-        
+    public readFile( Boolean Rezept){
         try{
-            
-         CocktailEinlesen = new FileReader("/home/malte/Schreibtisch/Workspace/meep"+StrRezeptauswahl+".md");
-         
-         InputCocktailInfo = new BufferedReader(CocktailEinlesen); 
-         
-       }
-       catch (FileNotFoundException b){
-           System.out.println("muuuh");
-       }
-        
-        try{
-            RezeptEinlesen = new FileReader("/home/malte/Schreibtisch/Workspace/meep"+StrRezeptauswahl+".mdr");
-            InputRezeptInfo = new BufferedReader(RezeptEinlesen);
+        StatusEinlesen = new FileReader("/home/malte/Schreibtisch/Workspace/stat.md");
+        InputStatus = new BufferedReader(StatusEinlesen);
         }
         catch (FileNotFoundException e){
             System.out.println(e.getMessage());
         }
-        
+
+        /*
+        Wenn nur der Staus abgefragt werden soll sollen nicht die rezepte eingelesen werden
+        */
+        try{
+            setLastStat();
+        }
+        catch (EOFException e){
+            
+        }
+        if (Rezept){
+            try{
+                
+             CocktailEinlesen = new FileReader("/home/malte/Schreibtisch/Workspace/meep"+StringStatus[0]+".md");
+
+             InputCocktailInfo = new BufferedReader(CocktailEinlesen); 
+
+           }
+           catch (FileNotFoundException b){
+               System.out.println("muuuh");
+           }
+
+            try{
+                RezeptEinlesen = new FileReader("/home/malte/Schreibtisch/Workspace/meep"+StringStatus[0]+".mdr");
+                InputRezeptInfo = new BufferedReader(RezeptEinlesen);
+            }
+            catch (FileNotFoundException e){
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+    
+    private void setLastStat () throws EOFException{
+        int i;
+        try{
+            for (i=0; i <17; i++){
+                if ((StringStatus[i]= InputStatus.readLine()) == null){
+                    StringStatus[i]= "-";
+                    throw new EOFException("EndofSpecs at stat.md");
+                }
+                System.out.println(StringStatus[i]);
+            }
+        }
+        catch (IOException e){
+            System.out.println(e.getMessage());
+            throw new EOFException("EndofSpecs at stat.md");
+        }
     }
     public String StringGet_Rezept() throws EOFException{
         String zeile;

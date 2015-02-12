@@ -16,10 +16,10 @@ public class LoadBufferedCocktails {
     private String[] BufferRezept = new String [16];
     private readFile loadSpecs;
 
-    public LoadBufferedCocktails(String StrRezeptauswahl) {
+    public LoadBufferedCocktails() throws IOException {
         int i=0;
         boolean EndofSpecs=false;
-        loadSpecs=new readFile(StrRezeptauswahl);
+        loadSpecs=new readFile(true);
         
         /*
         hier werden alle Infos für den Cocktail ungeparst in den Buffer
@@ -37,6 +37,9 @@ public class LoadBufferedCocktails {
             }
                 catch(StringIndexOutOfBoundsException stre){
                 System.out.println(stre.getMessage());
+            }
+            catch (NullPointerException ne){
+                throw new IIOException("blöd gelaufen du noop!");
             }
         }
         
@@ -132,5 +135,20 @@ public class LoadBufferedCocktails {
             throw new IIOException("Fehler beim erzeugen des Cocktails");
         }
                 return temp ;
+    }
+    
+    public Cocktail[] alleCocktailsErzeugen(){
+        Cocktail alleCocktails[] = new Cocktail[45];
+        try{
+            for(int i=1; i<45;i++){
+
+                alleCocktails[i-1]=CocktailErzeugen(i);
+            }
+        }
+        catch (IIOException a){
+ 
+        }
+        
+        return alleCocktails;
     }
 }

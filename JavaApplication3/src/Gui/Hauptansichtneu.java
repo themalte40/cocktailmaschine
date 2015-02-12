@@ -20,34 +20,23 @@ public class Hauptansichtneu extends javax.swing.JFrame {
     /**
      * Creates new form Hauptansichtneu
      */
-    private LoadBufferedCocktails load = new LoadBufferedCocktails("0");
     private int AktuellAngezeigerCocktail=0;
     private Cocktail[] alleCocktails = new Cocktail[60];
-    private boolean loadGeschehen=false;
     
     public Hauptansichtneu() {
-        
-        
+        try{
+            LoadBufferedCocktails load = new LoadBufferedCocktails();   
+            alleCocktails=load.alleCocktailsErzeugen();
+        }
+        catch (IOException e){
+            System.out.println(e.getMessage());
+        }
         initComponents();
         Getränke.setVisible(false);
         Getränke2.setVisible(false);
-        Ausgabefenster.setVisible(false);
-        if (loadGeschehen!=true)
-        {
-            try{
-                for(int i=1; i<45;i++){
-
-                    alleCocktails[i-1]=load.CocktailErzeugen(i);
-                }
-                loadGeschehen=true;
-            }
-            catch (IIOException a){
-                loadGeschehen=true;
-            }
-            loadGeschehen=true;
-        }
+        Ausgabefenster.setVisible(false);       
     }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -444,7 +433,7 @@ public class Hauptansichtneu extends javax.swing.JFrame {
 
     /**
      * @param args the command line arguments
-     */
+     */    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
