@@ -29,6 +29,8 @@ public class Hauptansichtneu extends javax.swing.JFrame {
      */
     private Cocktail[] AlkCocktail = new Cocktail[60];
     private Cocktail[] keinAlkCocktail = new Cocktail [60];
+    
+    
     public Hauptansichtneu() {
         setCocktails();
         initComponents();
