@@ -39,7 +39,7 @@ public class LoadBufferedCocktails {
                 System.out.println(stre.getMessage());
             }
             catch (NullPointerException ne){
-                throw new IIOException("blöd gelaufen du noop!");
+                throw new IOException("blöd gelaufen du noop!");
             }
         }
         
