@@ -5,17 +5,10 @@
  */
 package Gui;
 
-import java.awt.Panel;
+
 import Cocktail.*;
-import com.sun.glass.events.MouseEvent;
 import function.*;
 import java.io.IOException;
-import javax.imageio.IIOException;
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
 import javax.swing.*;
 
 /**
@@ -54,11 +47,14 @@ public class Hauptansichtneu extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        Ausgabefenster = new javax.swing.JPanel();
-        Textfeld = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
-        zurückAusgabefenster = new javax.swing.JButton();
-        BestellButton = new javax.swing.JButton();
+        Loginfenster = new javax.swing.JPanel();
+        Loginzugang = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
+        jTextField2 = new javax.swing.JTextField();
+        jTextField3 = new javax.swing.JTextField();
+        jTextField4 = new javax.swing.JTextField();
+        jTextField5 = new javax.swing.JTextField();
         Getränke = new javax.swing.JPanel();
         coc123 = new javax.swing.JPanel();
         cocktail1 = new javax.swing.JButton();
@@ -112,19 +108,17 @@ public class Hauptansichtneu extends javax.swing.JFrame {
             e.printStackTrace();
         }
         rechtsButton = new javax.swing.JToggleButton();
+        Ausgabefenster = new javax.swing.JPanel();
+        Textfeld = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        zurückAusgabefenster = new javax.swing.JButton();
+        BestellButton = new javax.swing.JButton();
         Hauptseite = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         Loginadminbutton = new javax.swing.JButton();
         AlkoholischeCocktailsButton = new javax.swing.JButton();
         BenutzerdefinierteCocktailsButton = new javax.swing.JButton();
         AlkoholfreieCocktailsButton = new javax.swing.JButton();
-        Loginfenster = new javax.swing.JPanel();
-        Loginzugang = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
-        jTextField5 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("alpha");
@@ -133,34 +127,100 @@ public class Hauptansichtneu extends javax.swing.JFrame {
         setMinimumSize(new java.awt.Dimension(1390, 768));
         setResizable(false);
 
-        Ausgabefenster.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        Loginfenster.setForeground(new java.awt.Color(226, 37, 37));
+        Loginfenster.setPreferredSize(new java.awt.Dimension(1390, 768));
 
-        Textfeld.setEditable(false);
-        Textfeld.addActionListener(new java.awt.event.ActionListener() {
+        Loginzugang.setText("Zugang");
+        Loginzugang.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                TextfeldActionPerformed(evt);
+                LoginzugangActionPerformed(evt);
             }
         });
-        Ausgabefenster.add(Textfeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 520, 450, 210));
 
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Gui/bestellhintergrund.jpg"))); // NOI18N
-        Ausgabefenster.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1390, 768));
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Gui/StartHintergrund.jpg"))); // NOI18N
+        jLabel2.setVerifyInputWhenFocusTarget(false);
 
-        zurückAusgabefenster.setText("Zürück");
-        zurückAusgabefenster.addActionListener(new java.awt.event.ActionListener() {
+        jTextField1.setEditable(false);
+        jTextField1.setText("Passwort:");
+        jTextField1.setEnabled(false);
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                zurückAusgabefensterActionPerformed(evt);
+                jTextField1ActionPerformed(evt);
             }
         });
-        Ausgabefenster.add(zurückAusgabefenster, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 170, 60));
 
-        BestellButton.setText("Bestellen");
-        BestellButton.addActionListener(new java.awt.event.ActionListener() {
+        jTextField3.setEditable(false);
+        jTextField3.setText("Benutzername:");
+        jTextField3.setEnabled(false);
+
+        jTextField4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BestellButtonActionPerformed(evt);
+                jTextField4ActionPerformed(evt);
             }
         });
-        Ausgabefenster.add(BestellButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(920, 690, 160, 40));
+        jTextField4.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTextField4KeyPressed(evt);
+            }
+        });
+
+        jTextField5.setText("Adminebene - Login");
+        jTextField5.setEnabled(false);
+        jTextField5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField5ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout LoginfensterLayout = new javax.swing.GroupLayout(Loginfenster);
+        Loginfenster.setLayout(LoginfensterLayout);
+        LoginfensterLayout.setHorizontalGroup(
+            LoginfensterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(LoginfensterLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(LoginfensterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(57, 57, 57)
+                .addGroup(LoginfensterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, LoginfensterLayout.createSequentialGroup()
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 1405, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(LoginfensterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(LoginfensterLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(145, 145, 145))
+                    .addGroup(LoginfensterLayout.createSequentialGroup()
+                        .addGap(1526, 1526, 1526)
+                        .addComponent(Loginzugang, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+        );
+        LoginfensterLayout.setVerticalGroup(
+            LoginfensterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, LoginfensterLayout.createSequentialGroup()
+                .addGroup(LoginfensterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, LoginfensterLayout.createSequentialGroup()
+                        .addComponent(Loginzugang, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(48, 48, 48))
+                    .addGroup(LoginfensterLayout.createSequentialGroup()
+                        .addGroup(LoginfensterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(LoginfensterLayout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel2))
+                        .addGap(29, 29, 29)))
+                .addGroup(LoginfensterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextField3)
+                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(25, 25, 25)
+                .addGroup(LoginfensterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(124, 124, 124))
+        );
 
         Getränke.setMinimumSize(new java.awt.Dimension(1390, 768));
         Getränke.setPreferredSize(new java.awt.Dimension(1390, 768));
@@ -901,6 +961,35 @@ public class Hauptansichtneu extends javax.swing.JFrame {
         });
         Getränke.add(rechtsButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(1021, 530, 140, 160));
 
+        Ausgabefenster.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        Textfeld.setEditable(false);
+        Textfeld.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TextfeldActionPerformed(evt);
+            }
+        });
+        Ausgabefenster.add(Textfeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 520, 450, 210));
+
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Gui/bestellhintergrund.jpg"))); // NOI18N
+        Ausgabefenster.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1390, 768));
+
+        zurückAusgabefenster.setText("Zürück");
+        zurückAusgabefenster.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                zurückAusgabefensterActionPerformed(evt);
+            }
+        });
+        Ausgabefenster.add(zurückAusgabefenster, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 170, 60));
+
+        BestellButton.setText("Bestellen");
+        BestellButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BestellButtonActionPerformed(evt);
+            }
+        });
+        Ausgabefenster.add(BestellButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(920, 690, 160, 40));
+
         Hauptseite.setPreferredSize(new java.awt.Dimension(1390, 768));
         Hauptseite.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -934,87 +1023,6 @@ public class Hauptansichtneu extends javax.swing.JFrame {
         });
         Hauptseite.add(AlkoholfreieCocktailsButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 390, 380, 110));
 
-        Loginfenster.setForeground(new java.awt.Color(226, 37, 37));
-
-        Loginzugang.setText("Zugang");
-
-        jTextField1.setEditable(false);
-        jTextField1.setText("Passwort:");
-        jTextField1.setEnabled(false);
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
-            }
-        });
-
-        jTextField3.setEditable(false);
-        jTextField3.setText("Benutzername:");
-        jTextField3.setEnabled(false);
-
-        jTextField4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField4ActionPerformed(evt);
-            }
-        });
-        jTextField4.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                jTextField4KeyPressed(evt);
-            }
-        });
-
-        jTextField5.setText("Adminebene - Login");
-        jTextField5.setEnabled(false);
-        jTextField5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField5ActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout LoginfensterLayout = new javax.swing.GroupLayout(Loginfenster);
-        Loginfenster.setLayout(LoginfensterLayout);
-        LoginfensterLayout.setHorizontalGroup(
-            LoginfensterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(LoginfensterLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(LoginfensterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, LoginfensterLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(Loginzugang, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(LoginfensterLayout.createSequentialGroup()
-                        .addGroup(LoginfensterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(57, 57, 57)
-                        .addGroup(LoginfensterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 143, Short.MAX_VALUE)))
-                .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, LoginfensterLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(145, 145, 145))
-        );
-        LoginfensterLayout.setVerticalGroup(
-            LoginfensterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, LoginfensterLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 29, 29)
-                .addGroup(LoginfensterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField3)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(25, 25, 25)
-                .addGroup(LoginfensterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(66, 66, 66)
-                .addComponent(Loginzugang, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-
-        Hauptseite.add(Loginfenster, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 110, -1, -1));
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -1029,6 +1037,11 @@ public class Hauptansichtneu extends javax.swing.JFrame {
                 .addGroup(layout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
                     .addComponent(Ausgabefenster, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(Loginfenster, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(0, 0, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
@@ -1045,6 +1058,11 @@ public class Hauptansichtneu extends javax.swing.JFrame {
                 .addGroup(layout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
                     .addComponent(Ausgabefenster, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(Loginfenster, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(0, 0, Short.MAX_VALUE)))
         );
 
@@ -1363,22 +1381,6 @@ this.revalidate();
               // TODO add your handling code here:
     }//GEN-LAST:event_LoginadminbuttonActionPerformed
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
-
-    private void jTextField5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField5ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField5ActionPerformed
-
-    private void jTextField4KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField4KeyPressed
-    
-    }//GEN-LAST:event_jTextField4KeyPressed
-
-    private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField4ActionPerformed
-
     private void cocktail9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cocktail9ActionPerformed
         Ausgabefenster.setVisible(true);
         Getränke.setVisible(false);
@@ -1399,6 +1401,26 @@ this.revalidate();
         AktuellAngezeigerCocktail=7;
         Textfeld.setText(alleCocktails[6].getName()+ " " +alleCocktails[6].getPrintRezept(6));
     }//GEN-LAST:event_cocktail7ActionPerformed
+
+    private void jTextField5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField5ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField5ActionPerformed
+
+    private void jTextField4KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField4KeyPressed
+
+    }//GEN-LAST:event_jTextField4KeyPressed
+
+    private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField4ActionPerformed
+
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField1ActionPerformed
+
+    private void LoginzugangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LoginzugangActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_LoginzugangActionPerformed
 
  public static void main(String args[]) {
 /* Set the Nimbus look and feel */
@@ -1488,6 +1510,7 @@ this.revalidate();
     private javax.swing.JButton cocktail8;
     private javax.swing.JButton cocktail9;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
