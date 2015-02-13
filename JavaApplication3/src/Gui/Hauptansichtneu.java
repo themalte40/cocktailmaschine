@@ -1448,7 +1448,8 @@ this.revalidate();
 /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Hauptansichtneu().setVisible(true);
+                Hauptansichtneu neu = new Hauptansichtneu();
+                neu.setVisible(true);
                 }
             });
         }
