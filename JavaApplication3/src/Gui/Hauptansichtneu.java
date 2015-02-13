@@ -21,21 +21,48 @@ public class Hauptansichtneu extends javax.swing.JFrame {
      * Creates new form Hauptansichtneu
  */
  	
- private int AktuellAngezeigerCocktail=0;
-   private Cocktail[] alleCocktails = new Cocktail[60];
+    private int AktuellAngezeigerCocktail=0;
+    Cocktail[] alleCocktails = new Cocktail[60];
+    /**
+     *  alle Cocktails soll lokal in setCocktails angeleget werden
+     *  es soll statdessen aus AlkCocktail und kein AlkCocktail gelesen werden
+     */
+    private Cocktail[] AlkCocktail = new Cocktail[60];
+    private Cocktail[] keinAlkCocktail = new Cocktail [60];
     public Hauptansichtneu() {
-        try{
-          LoadBufferedCocktails load = new LoadBufferedCocktails();
-          alleCocktails=load.alleCocktailsErzeugen();
-        }
-        catch (IOException e){
-            System.out.println(e.getMessage());
-        }
+        setCocktails();
         initComponents();
         Getränke.setVisible(false);
         Ausgabefenster.setVisible(false);
         Loginfenster.setVisible(false);
         
+    }
+    
+    private void setCocktails(){
+        
+        try{
+          LoadBufferedCocktails load = new LoadBufferedCocktails();
+          alleCocktails=load.alleCocktailsErzeugen();
+          
+          int alk=0;
+          int keinalk=0;
+          try{
+            for (int i=0; i<60; i++){
+                if (alleCocktails[i].getBoolalk()){
+                    AlkCocktail[alk]=alleCocktails[i];
+                }
+                else {
+                    keinAlkCocktail[keinalk]=alleCocktails[i];
+                }
+            }
+          }
+          catch (NullPointerException e){
+              System.out.println("alle Cocktails eingelesen");
+          }
+        }
+        catch (IOException e){
+            System.out.println(e.getMessage());
+        }
     }
 
     /**

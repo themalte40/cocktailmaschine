@@ -89,8 +89,8 @@ gelesen
         private String getName(int InputCoctailID) throws IOException {
         char[] charName=new char[100];
             try{
-                for(int i=3;BufferCoktails[InputCoctailID-1].charAt(i)!=':'; i++){
-                    charName[i-3]=BufferCoktails[InputCoctailID-1].charAt(i);
+                for(int i=5;BufferCoktails[InputCoctailID-1].charAt(i)!=':'; i++){
+                    charName[i-5]=BufferCoktails[InputCoctailID-1].charAt(i);
                     }
                 }
                 catch(NullPointerException a){
@@ -98,11 +98,27 @@ gelesen
                 }
                 return new String (charName);
             }
+        
+        private boolean getAlk( int InputCoctailID) throws IOException {
+            try{
+                System.err.println("-");
+                if (BufferCoktails[InputCoctailID-1].charAt(3)=='J'){
+                  return true;  
+                }
+                else{
+                    return false;
+                }
+            }
+            catch (NullPointerException e){
+                throw new IOException("Der Eintrag mit der Id "+InputCoctailID+" existiert nicht!");
+            }
+        }
+        
         private String getRezeptWerte( int InputCoctailID) throws IOException {
         char[] charRezept=new char[30];
         int i;
             try{
-                for(i=3;BufferCoktails[InputCoctailID-1].charAt(i)!=':'; i++){
+                for(i=5;BufferCoktails[InputCoctailID-1].charAt(i)!=':'; i++){
             }
             charRezept[0]=' ';
             for(int j=(i+1);BufferCoktails[InputCoctailID-1].charAt(j)!=';'; j++){
@@ -110,7 +126,7 @@ gelesen
             }
         }
         catch (NullPointerException a){
-        throw new IIOException("Der Eintrag mit der Id "+InputCoctailID+" existiert nicht!");
+        throw new IOException("Der Eintrag mit der Id "+InputCoctailID+" existiert nicht!");
         }
 return new String (charRezept);
 }
@@ -118,7 +134,7 @@ return new String (charRezept);
     public Cocktail CocktailErzeugen(int InputCoctailID) throws IIOException {
     Cocktail temp;
         try{
-        temp = new Cocktail(getID(InputCoctailID),getName(InputCoctailID),getRezeptWerte(InputCoctailID),"leer", BufferRezept );
+        temp = new Cocktail(getID(InputCoctailID),getName(InputCoctailID),getRezeptWerte(InputCoctailID),"leer", BufferRezept, getAlk(InputCoctailID) );
         System.out.println("load Rezept: "+getRezeptWerte(InputCoctailID));
         }
         catch (IOException a){

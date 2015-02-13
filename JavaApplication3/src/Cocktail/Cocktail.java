@@ -17,20 +17,28 @@ public class Cocktail {
    private String [] RezeptGetraenkename;
    private int[] RezeptVolumen = new int[17];//ml
    private String StringSpeicherpfadDesBildes;
+   private boolean alk;
    
    public Cocktail(int InitInputID
            ,String StringInputName
            ,String StringInputRezept
            ,String StringInputSpeicherpfadDesBildes
-           ,String[] Rezept){
-      IntID=InitInputID;
-      StringName=StringInputName;
-      StringRezept=StringInputRezept;
-      StringSpeicherpfadDesBildes=StringInputSpeicherpfadDesBildes;
-      this.RezeptGetraenkename = Rezept;
-      setRezeptVolumen();
-       System.out.println(Rezept[1]);
-   }   
+           ,String[] Rezept
+           ,boolean alk){
+       
+        IntID=InitInputID;
+        StringName=StringInputName;
+        StringRezept=StringInputRezept;
+        StringSpeicherpfadDesBildes=StringInputSpeicherpfadDesBildes;
+        this.RezeptGetraenkename = Rezept;
+        this.alk=alk;
+        setRezeptVolumen();
+        System.out.println(Rezept[1]);
+   }
+   public boolean getBoolalk(){
+       return alk;
+   }
+   
    public int getIntID (){
        return IntID;
    }   
