@@ -21,13 +21,10 @@ public class Hauptansichtneu extends javax.swing.JFrame {
     /**
      * Creates new form Hauptansichtneu
  */
- 	
     private int AktuellAngezeigerCocktail=0;
-    Cocktail[] alleCocktails = new Cocktail[60];
-    /**
-     *  alle Cocktails soll lokal in setCocktails angeleget werden
-     *  es soll statdessen aus AlkCocktail und kein AlkCocktail gelesen werden
-     */
+    private int zuletztGeoeffneterAlkCocktail=3;
+    private int zuleztGeoeffneterNichtAlkCoktail=3;
+    private boolean zurzeitAlk;
     private Cocktail[] AlkCocktail = new Cocktail[60];
     private Cocktail[] keinAlkCocktail = new Cocktail [60];
     
@@ -35,36 +32,47 @@ public class Hauptansichtneu extends javax.swing.JFrame {
     public Hauptansichtneu() {
         setCocktails();
         initComponents();
-        Getränke.setVisible(false);
+        Getränke.setVisible(false);      
         Ausgabefenster.setVisible(false);
-        Loginfenster.setVisible(false);
-        
+        Loginfenster.setVisible(false);       
     }
     
     private void setCocktails(){
+        Cocktail[] alleCocktails = new Cocktail[60];
         
         try{
           LoadBufferedCocktails load = new LoadBufferedCocktails();
           alleCocktails=load.alleCocktailsErzeugen();
           
-          int alk=0;
-          int keinalk=0;
-          try{
-            for (int i=0; i<60; i++){
-                if (alleCocktails[i].getBoolalk()){
-                    AlkCocktail[alk]=alleCocktails[i];
-                }
-                else {
-                    keinAlkCocktail[keinalk]=alleCocktails[i];
-                }
-            }
-          }
-          catch (NullPointerException e){
-              System.out.println("alle Cocktails eingelesen");
-          }
+
+         
         }
         catch (IOException e){
             System.out.println(e.getMessage());
+        }
+        
+        System.out.println("-----------------------------");
+        int alk=0;
+        int keinalk=0;
+        try{
+          for (int i=0; i<60; i++){
+              System.out.println(alleCocktails[i].getBoolalk());
+              if (alleCocktails[i].getBoolalk()){
+                  System.out.println(alk+"    alk :"+alleCocktails[i].getName());
+                  AlkCocktail[alk]=alleCocktails[i];
+                  System.out.println(AlkCocktail[alk].getName());
+                  alk++;
+              }
+              else {
+                  keinAlkCocktail[keinalk]=alleCocktails[i];
+                  System.out.println(keinalk+"   kein alk:"+keinAlkCocktail[keinalk].getName());                  
+                  keinalk++;
+                }
+            }
+        }
+        catch (NullPointerException e){
+            System.err.println(e.getMessage());
+            System.out.println("alle Cocktails eingelesen");
         }
     }
 
@@ -77,6 +85,12 @@ public class Hauptansichtneu extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        Hauptseite = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        Loginadminbutton = new javax.swing.JButton();
+        AlkoholischeCocktailsButton = new javax.swing.JButton();
+        BenutzerdefinierteCocktailsButton = new javax.swing.JButton();
+        AlkoholfreieCocktailsButton = new javax.swing.JButton();
         Loginfenster = new javax.swing.JPanel();
         Loginzugang = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
@@ -87,47 +101,9 @@ public class Hauptansichtneu extends javax.swing.JFrame {
         jTextField5 = new javax.swing.JTextField();
         Getränke = new javax.swing.JPanel();
         coc123 = new javax.swing.JPanel();
-        cocktail1 = new javax.swing.JButton();
-        cocktail2 = new javax.swing.JButton();
-        cocktail3 = new javax.swing.JButton();
-        coc124 = new javax.swing.JPanel();
-        cocktail4 = new javax.swing.JButton();
-        cocktail5 = new javax.swing.JButton();
-        cocktail6 = new javax.swing.JButton();
-        coc133 = new javax.swing.JPanel();
-        cocktail31 = new javax.swing.JButton();
-        coc132 = new javax.swing.JPanel();
-        cocktail28 = new javax.swing.JButton();
-        cocktail29 = new javax.swing.JButton();
-        cocktail30 = new javax.swing.JButton();
-        coc125 = new javax.swing.JPanel();
-        cocktail7 = new javax.swing.JButton();
-        cocktail8 = new javax.swing.JButton();
-        cocktail9 = new javax.swing.JButton();
-        coc126 = new javax.swing.JPanel();
-        cocktail10 = new javax.swing.JButton();
-        cocktail11 = new javax.swing.JButton();
-        cocktail12 = new javax.swing.JButton();
-        coc127 = new javax.swing.JPanel();
-        cocktail13 = new javax.swing.JButton();
-        cocktail14 = new javax.swing.JButton();
-        cocktail15 = new javax.swing.JButton();
-        coc128 = new javax.swing.JPanel();
-        cocktail16 = new javax.swing.JButton();
-        cocktail17 = new javax.swing.JButton();
-        cocktail18 = new javax.swing.JButton();
-        coc129 = new javax.swing.JPanel();
-        cocktail19 = new javax.swing.JButton();
-        cocktail20 = new javax.swing.JButton();
-        cocktail21 = new javax.swing.JButton();
-        coc131 = new javax.swing.JPanel();
-        cocktail25 = new javax.swing.JButton();
-        cocktail26 = new javax.swing.JButton();
-        cocktail27 = new javax.swing.JButton();
-        coc130 = new javax.swing.JPanel();
-        cocktail22 = new javax.swing.JButton();
-        cocktail23 = new javax.swing.JButton();
-        cocktail24 = new javax.swing.JButton();
+        AlkCocktail1 = new javax.swing.JButton();
+        AlkCocktail2 = new javax.swing.JButton();
+        AlkCocktail3 = new javax.swing.JButton();
         Label2 = new javax.swing.JLabel();
         zurück = new javax.swing.JButton();
         try {
@@ -143,19 +119,47 @@ public class Hauptansichtneu extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         zurückAusgabefenster = new javax.swing.JButton();
         BestellButton = new javax.swing.JButton();
-        Hauptseite = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        Loginadminbutton = new javax.swing.JButton();
-        AlkoholischeCocktailsButton = new javax.swing.JButton();
-        BenutzerdefinierteCocktailsButton = new javax.swing.JButton();
-        AlkoholfreieCocktailsButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("alpha");
         setBackground(new java.awt.Color(0, 0, 0));
         setBounds(new java.awt.Rectangle(0, 0, 0, 0));
+        setMaximumSize(new java.awt.Dimension(1390, 768));
         setMinimumSize(new java.awt.Dimension(1390, 768));
         setResizable(false);
+
+        Hauptseite.setPreferredSize(new java.awt.Dimension(1390, 768));
+        Hauptseite.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Gui/StartHintergrund.jpg"))); // NOI18N
+        Hauptseite.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1390, 768));
+
+        Loginadminbutton.setText("jButton2");
+        Loginadminbutton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                LoginadminbuttonActionPerformed(evt);
+            }
+        });
+        Hauptseite.add(Loginadminbutton, new org.netbeans.lib.awtextra.AbsoluteConstraints(1234, 718, 150, 40));
+
+        AlkoholischeCocktailsButton.setText("Alkoholische Cocktails");
+        AlkoholischeCocktailsButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AlkoholischeCocktailsButtonActionPerformed(evt);
+            }
+        });
+        Hauptseite.add(AlkoholischeCocktailsButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 400, 370, 100));
+
+        BenutzerdefinierteCocktailsButton.setText("Benutzerdefinierte Cocktails");
+        Hauptseite.add(BenutzerdefinierteCocktailsButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 390, 390, 120));
+
+        AlkoholfreieCocktailsButton.setText("Alkoholfreie Cocktails");
+        AlkoholfreieCocktailsButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AlkoholfreieCocktailsButtonActionPerformed(evt);
+            }
+        });
+        Hauptseite.add(AlkoholfreieCocktailsButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 390, 380, 110));
 
         Loginfenster.setForeground(new java.awt.Color(226, 37, 37));
         Loginfenster.setPreferredSize(new java.awt.Dimension(1390, 768));
@@ -216,7 +220,7 @@ public class Hauptansichtneu extends javax.swing.JFrame {
                     .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, LoginfensterLayout.createSequentialGroup()
+            .addGroup(LoginfensterLayout.createSequentialGroup()
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 1405, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(LoginfensterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(LoginfensterLayout.createSequentialGroup()
@@ -261,40 +265,36 @@ public class Hauptansichtneu extends javax.swing.JFrame {
         coc123.setFocusable(false);
         coc123.setOpaque(false);
 
-        cocktail1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Gui/Ambassador.gif"))); // NOI18N
-        cocktail1.setBorder(null);
-        cocktail1.setBorderPainted(false);
-        cocktail1.setContentAreaFilled(false);
-        cocktail1.setDefaultCapable(false);
-        cocktail1.setMaximumSize(new java.awt.Dimension(20, 23));
-        cocktail1.addActionListener(new java.awt.event.ActionListener() {
+        AlkCocktail1.setBorder(null);
+        AlkCocktail1.setBorderPainted(false);
+        AlkCocktail1.setContentAreaFilled(false);
+        AlkCocktail1.setDefaultCapable(false);
+        AlkCocktail1.setMaximumSize(new java.awt.Dimension(20, 23));
+        AlkCocktail1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cocktail1ActionPerformed(evt);
+                AlkCocktail1ActionPerformed(evt);
             }
         });
 
-        cocktail2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Gui/Ambassador.gif"))); // NOI18N
-        cocktail2.setBorder(null);
-        cocktail2.setBorderPainted(false);
-        cocktail2.setContentAreaFilled(false);
-        cocktail2.setDefaultCapable(false);
-        cocktail2.setMaximumSize(new java.awt.Dimension(20, 23));
-        cocktail2.setMinimumSize(new java.awt.Dimension(181, 150));
-        cocktail2.addActionListener(new java.awt.event.ActionListener() {
+        AlkCocktail2.setBorder(null);
+        AlkCocktail2.setBorderPainted(false);
+        AlkCocktail2.setContentAreaFilled(false);
+        AlkCocktail2.setDefaultCapable(false);
+        AlkCocktail2.setMaximumSize(new java.awt.Dimension(20, 23));
+        AlkCocktail2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cocktail2ActionPerformed(evt);
+                AlkCocktail2ActionPerformed(evt);
             }
         });
 
-        cocktail3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Gui/Ambassador.gif"))); // NOI18N
-        cocktail3.setBorder(null);
-        cocktail3.setBorderPainted(false);
-        cocktail3.setContentAreaFilled(false);
-        cocktail3.setDefaultCapable(false);
-        cocktail3.setMaximumSize(new java.awt.Dimension(20, 23));
-        cocktail3.addActionListener(new java.awt.event.ActionListener() {
+        AlkCocktail3.setBorder(null);
+        AlkCocktail3.setBorderPainted(false);
+        AlkCocktail3.setContentAreaFilled(false);
+        AlkCocktail3.setDefaultCapable(false);
+        AlkCocktail3.setMaximumSize(new java.awt.Dimension(20, 23));
+        AlkCocktail3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cocktail3ActionPerformed(evt);
+                AlkCocktail3ActionPerformed(evt);
             }
         });
 
@@ -303,11 +303,11 @@ public class Hauptansichtneu extends javax.swing.JFrame {
         coc123Layout.setHorizontalGroup(
             coc123Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(coc123Layout.createSequentialGroup()
-                .addComponent(cocktail1, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(AlkCocktail1, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(25, 25, 25)
-                .addComponent(cocktail2, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(AlkCocktail2, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(25, 25, 25)
-                .addComponent(cocktail3, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(AlkCocktail3, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(10, 10, 10))
         );
         coc123Layout.setVerticalGroup(
@@ -315,650 +315,23 @@ public class Hauptansichtneu extends javax.swing.JFrame {
             .addGroup(coc123Layout.createSequentialGroup()
                 .addGap(15, 15, 15)
                 .addGroup(coc123Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(cocktail2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(cocktail1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 276, Short.MAX_VALUE)
-                    .addComponent(cocktail3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(AlkCocktail2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(AlkCocktail1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 276, Short.MAX_VALUE)
+                    .addComponent(AlkCocktail3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(15, 15, 15))
         );
 
         Getränke.add(coc123, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 470, -1, 300));
 
-        coc124.setDoubleBuffered(false);
-        coc124.setEnabled(false);
-        coc124.setFocusable(false);
-        coc124.setOpaque(false);
-
-        cocktail4.setBorder(null);
-        cocktail4.setBorderPainted(false);
-        cocktail4.setContentAreaFilled(false);
-        cocktail4.setDefaultCapable(false);
-        cocktail4.setMaximumSize(new java.awt.Dimension(20, 23));
-        cocktail4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cocktail4ActionPerformed(evt);
-            }
-        });
-
-        cocktail5.setBorder(null);
-        cocktail5.setBorderPainted(false);
-        cocktail5.setContentAreaFilled(false);
-        cocktail5.setDefaultCapable(false);
-        cocktail5.setMaximumSize(new java.awt.Dimension(20, 23));
-        cocktail5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cocktail5ActionPerformed(evt);
-            }
-        });
-
-        cocktail6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Gui/Ambassador.gif"))); // NOI18N
-        cocktail6.setBorder(null);
-        cocktail6.setBorderPainted(false);
-        cocktail6.setContentAreaFilled(false);
-        cocktail6.setDefaultCapable(false);
-        cocktail6.setMaximumSize(new java.awt.Dimension(20, 23));
-        cocktail6.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cocktail6ActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout coc124Layout = new javax.swing.GroupLayout(coc124);
-        coc124.setLayout(coc124Layout);
-        coc124Layout.setHorizontalGroup(
-            coc124Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(coc124Layout.createSequentialGroup()
-                .addGap(10, 10, 10)
-                .addComponent(cocktail4, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(25, 25, 25)
-                .addComponent(cocktail5, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(25, 25, 25)
-                .addComponent(cocktail6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(10, 10, 10))
-        );
-        coc124Layout.setVerticalGroup(
-            coc124Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(coc124Layout.createSequentialGroup()
-                .addGap(15, 15, 15)
-                .addGroup(coc124Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(cocktail6, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
-                    .addComponent(cocktail4, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
-                    .addComponent(cocktail5, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE))
-                .addGap(15, 15, 15))
-        );
-
-        Getränke.add(coc124, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 460, -1, 320));
-
-        coc133.setDoubleBuffered(false);
-        coc133.setEnabled(false);
-        coc133.setFocusable(false);
-        coc133.setOpaque(false);
-
-        cocktail31.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Gui/Ambassador.gif"))); // NOI18N
-        cocktail31.setBorder(null);
-        cocktail31.setBorderPainted(false);
-        cocktail31.setContentAreaFilled(false);
-        cocktail31.setDefaultCapable(false);
-        cocktail31.setMaximumSize(new java.awt.Dimension(20, 23));
-        cocktail31.setPreferredSize(new java.awt.Dimension(180, 150));
-        cocktail31.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cocktail31ActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout coc133Layout = new javax.swing.GroupLayout(coc133);
-        coc133.setLayout(coc133Layout);
-        coc133Layout.setHorizontalGroup(
-            coc133Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(coc133Layout.createSequentialGroup()
-                .addGap(235, 235, 235)
-                .addComponent(cocktail31, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(255, Short.MAX_VALUE))
-        );
-        coc133Layout.setVerticalGroup(
-            coc133Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, coc133Layout.createSequentialGroup()
-                .addGap(15, 15, 15)
-                .addComponent(cocktail31, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
-                .addGap(15, 15, 15))
-        );
-
-        Getränke.add(coc133, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 460, 670, 330));
-
-        coc132.setDoubleBuffered(false);
-        coc132.setEnabled(false);
-        coc132.setFocusable(false);
-        coc132.setOpaque(false);
-
-        cocktail28.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Gui/Ambassador.gif"))); // NOI18N
-        cocktail28.setBorder(null);
-        cocktail28.setBorderPainted(false);
-        cocktail28.setContentAreaFilled(false);
-        cocktail28.setDefaultCapable(false);
-        cocktail28.setMaximumSize(new java.awt.Dimension(20, 23));
-        cocktail28.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cocktail28ActionPerformed(evt);
-            }
-        });
-
-        cocktail29.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Gui/Ambassador.gif"))); // NOI18N
-        cocktail29.setBorder(null);
-        cocktail29.setBorderPainted(false);
-        cocktail29.setContentAreaFilled(false);
-        cocktail29.setDefaultCapable(false);
-        cocktail29.setMaximumSize(new java.awt.Dimension(20, 23));
-        cocktail29.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cocktail29ActionPerformed(evt);
-            }
-        });
-
-        cocktail30.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Gui/Ambassador.gif"))); // NOI18N
-        cocktail30.setBorder(null);
-        cocktail30.setBorderPainted(false);
-        cocktail30.setContentAreaFilled(false);
-        cocktail30.setDefaultCapable(false);
-        cocktail30.setMaximumSize(new java.awt.Dimension(20, 23));
-        cocktail30.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cocktail30ActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout coc132Layout = new javax.swing.GroupLayout(coc132);
-        coc132.setLayout(coc132Layout);
-        coc132Layout.setHorizontalGroup(
-            coc132Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(coc132Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(cocktail29, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(25, 25, 25)
-                .addComponent(cocktail30, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(25, 25, 25)
-                .addComponent(cocktail28, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(10, 10, 10))
-        );
-        coc132Layout.setVerticalGroup(
-            coc132Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(coc132Layout.createSequentialGroup()
-                .addGap(15, 15, 15)
-                .addGroup(coc132Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(cocktail28, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(cocktail29, javax.swing.GroupLayout.DEFAULT_SIZE, 275, Short.MAX_VALUE)
-                    .addComponent(cocktail30, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(15, Short.MAX_VALUE))
-        );
-
-        Getränke.add(coc132, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 480, -1, -1));
-
-        coc125.setDoubleBuffered(false);
-        coc125.setEnabled(false);
-        coc125.setFocusable(false);
-        coc125.setOpaque(false);
-
-        cocktail7.setBorder(null);
-        cocktail7.setBorderPainted(false);
-        cocktail7.setContentAreaFilled(false);
-        cocktail7.setDefaultCapable(false);
-        cocktail7.setMaximumSize(new java.awt.Dimension(20, 23));
-        cocktail7.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cocktail7ActionPerformed(evt);
-            }
-        });
-
-        cocktail8.setBorder(null);
-        cocktail8.setBorderPainted(false);
-        cocktail8.setContentAreaFilled(false);
-        cocktail8.setDefaultCapable(false);
-        cocktail8.setMaximumSize(new java.awt.Dimension(20, 23));
-        cocktail8.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cocktail8ActionPerformed(evt);
-            }
-        });
-
-        cocktail9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Gui/Ambassador.gif"))); // NOI18N
-        cocktail9.setBorder(null);
-        cocktail9.setBorderPainted(false);
-        cocktail9.setContentAreaFilled(false);
-        cocktail9.setDefaultCapable(false);
-        cocktail9.setMaximumSize(new java.awt.Dimension(20, 23));
-        cocktail9.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cocktail9ActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout coc125Layout = new javax.swing.GroupLayout(coc125);
-        coc125.setLayout(coc125Layout);
-        coc125Layout.setHorizontalGroup(
-            coc125Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(coc125Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(cocktail8, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(25, 25, 25)
-                .addComponent(cocktail9, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(25, 25, 25)
-                .addComponent(cocktail7, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(10, 10, 10))
-        );
-        coc125Layout.setVerticalGroup(
-            coc125Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(coc125Layout.createSequentialGroup()
-                .addGap(15, 15, 15)
-                .addGroup(coc125Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(cocktail9, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
-                    .addComponent(cocktail8, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
-                    .addComponent(cocktail7, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE))
-                .addGap(15, 15, 15))
-        );
-
-        Getränke.add(coc125, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 460, 610, 330));
-
-        coc126.setDoubleBuffered(false);
-        coc126.setEnabled(false);
-        coc126.setFocusable(false);
-        coc126.setOpaque(false);
-
-        cocktail10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Gui/Ambassador.gif"))); // NOI18N
-        cocktail10.setBorder(null);
-        cocktail10.setBorderPainted(false);
-        cocktail10.setContentAreaFilled(false);
-        cocktail10.setDefaultCapable(false);
-        cocktail10.setMaximumSize(new java.awt.Dimension(20, 23));
-        cocktail10.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cocktail10ActionPerformed(evt);
-            }
-        });
-
-        cocktail11.setBorder(null);
-        cocktail11.setBorderPainted(false);
-        cocktail11.setContentAreaFilled(false);
-        cocktail11.setDefaultCapable(false);
-        cocktail11.setMaximumSize(new java.awt.Dimension(20, 23));
-        cocktail11.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cocktail11ActionPerformed(evt);
-            }
-        });
-
-        cocktail12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Gui/Ambassador.gif"))); // NOI18N
-        cocktail12.setBorder(null);
-        cocktail12.setBorderPainted(false);
-        cocktail12.setContentAreaFilled(false);
-        cocktail12.setDefaultCapable(false);
-        cocktail12.setMaximumSize(new java.awt.Dimension(20, 23));
-        cocktail12.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cocktail12ActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout coc126Layout = new javax.swing.GroupLayout(coc126);
-        coc126.setLayout(coc126Layout);
-        coc126Layout.setHorizontalGroup(
-            coc126Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(coc126Layout.createSequentialGroup()
-                .addContainerGap(33, Short.MAX_VALUE)
-                .addComponent(cocktail11, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(25, 25, 25)
-                .addComponent(cocktail10, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(25, 25, 25)
-                .addComponent(cocktail12, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(35, 35, 35))
-        );
-        coc126Layout.setVerticalGroup(
-            coc126Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(coc126Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(coc126Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(cocktail12, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cocktail11, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(18, Short.MAX_VALUE))
-            .addComponent(cocktail10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-
-        Getränke.add(coc126, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 460, -1, -1));
-
-        coc127.setDoubleBuffered(false);
-        coc127.setEnabled(false);
-        coc127.setFocusable(false);
-        coc127.setOpaque(false);
-
-        cocktail13.setBorder(null);
-        cocktail13.setBorderPainted(false);
-        cocktail13.setContentAreaFilled(false);
-        cocktail13.setDefaultCapable(false);
-        cocktail13.setMaximumSize(new java.awt.Dimension(20, 23));
-        cocktail13.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cocktail13ActionPerformed(evt);
-            }
-        });
-
-        cocktail14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Gui/Ambassador.gif"))); // NOI18N
-        cocktail14.setBorder(null);
-        cocktail14.setBorderPainted(false);
-        cocktail14.setContentAreaFilled(false);
-        cocktail14.setDefaultCapable(false);
-        cocktail14.setMaximumSize(new java.awt.Dimension(20, 23));
-        cocktail14.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cocktail14ActionPerformed(evt);
-            }
-        });
-
-        cocktail15.setBorder(null);
-        cocktail15.setBorderPainted(false);
-        cocktail15.setContentAreaFilled(false);
-        cocktail15.setDefaultCapable(false);
-        cocktail15.setMaximumSize(new java.awt.Dimension(20, 23));
-        cocktail15.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cocktail15ActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout coc127Layout = new javax.swing.GroupLayout(coc127);
-        coc127.setLayout(coc127Layout);
-        coc127Layout.setHorizontalGroup(
-            coc127Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, coc127Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(cocktail14, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(cocktail15, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 29, 29)
-                .addComponent(cocktail13, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(99, 99, 99))
-        );
-        coc127Layout.setVerticalGroup(
-            coc127Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(coc127Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(coc127Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(cocktail15, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
-                    .addComponent(cocktail14, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
-                    .addComponent(cocktail13, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE))
-                .addContainerGap(18, Short.MAX_VALUE))
-        );
-
-        Getränke.add(coc127, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 470, 650, 330));
-
-        coc128.setDoubleBuffered(false);
-        coc128.setEnabled(false);
-        coc128.setFocusable(false);
-        coc128.setOpaque(false);
-
-        cocktail16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Gui/Ambassador.gif"))); // NOI18N
-        cocktail16.setBorder(null);
-        cocktail16.setBorderPainted(false);
-        cocktail16.setContentAreaFilled(false);
-        cocktail16.setDefaultCapable(false);
-        cocktail16.setMaximumSize(new java.awt.Dimension(20, 23));
-        cocktail16.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cocktail16ActionPerformed(evt);
-            }
-        });
-
-        cocktail17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Gui/Ambassador.gif"))); // NOI18N
-        cocktail17.setBorder(null);
-        cocktail17.setBorderPainted(false);
-        cocktail17.setContentAreaFilled(false);
-        cocktail17.setDefaultCapable(false);
-        cocktail17.setMaximumSize(new java.awt.Dimension(20, 23));
-        cocktail17.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cocktail17ActionPerformed(evt);
-            }
-        });
-
-        cocktail18.setBorder(null);
-        cocktail18.setBorderPainted(false);
-        cocktail18.setContentAreaFilled(false);
-        cocktail18.setDefaultCapable(false);
-        cocktail18.setMaximumSize(new java.awt.Dimension(20, 23));
-        cocktail18.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cocktail18ActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout coc128Layout = new javax.swing.GroupLayout(coc128);
-        coc128.setLayout(coc128Layout);
-        coc128Layout.setHorizontalGroup(
-            coc128Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(coc128Layout.createSequentialGroup()
-                .addContainerGap(23, Short.MAX_VALUE)
-                .addComponent(cocktail17, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(25, 25, 25)
-                .addComponent(cocktail18, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(25, 25, 25)
-                .addComponent(cocktail16, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30))
-        );
-        coc128Layout.setVerticalGroup(
-            coc128Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(coc128Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(coc128Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(cocktail18, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
-                    .addComponent(cocktail17, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(cocktail16, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-        );
-
-        Getränke.add(coc128, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 470, -1, -1));
-
-        coc129.setDoubleBuffered(false);
-        coc129.setEnabled(false);
-        coc129.setFocusable(false);
-        coc129.setOpaque(false);
-
-        cocktail19.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Gui/Ambassador.gif"))); // NOI18N
-        cocktail19.setBorder(null);
-        cocktail19.setBorderPainted(false);
-        cocktail19.setContentAreaFilled(false);
-        cocktail19.setDefaultCapable(false);
-        cocktail19.setMaximumSize(new java.awt.Dimension(20, 23));
-        cocktail19.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cocktail19ActionPerformed(evt);
-            }
-        });
-
-        cocktail20.setBorder(null);
-        cocktail20.setBorderPainted(false);
-        cocktail20.setContentAreaFilled(false);
-        cocktail20.setDefaultCapable(false);
-        cocktail20.setMaximumSize(new java.awt.Dimension(20, 23));
-        cocktail20.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cocktail20ActionPerformed(evt);
-            }
-        });
-
-        cocktail21.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Gui/Ambassador.gif"))); // NOI18N
-        cocktail21.setBorder(null);
-        cocktail21.setBorderPainted(false);
-        cocktail21.setContentAreaFilled(false);
-        cocktail21.setDefaultCapable(false);
-        cocktail21.setMaximumSize(new java.awt.Dimension(20, 23));
-        cocktail21.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cocktail21ActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout coc129Layout = new javax.swing.GroupLayout(coc129);
-        coc129.setLayout(coc129Layout);
-        coc129Layout.setHorizontalGroup(
-            coc129Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(coc129Layout.createSequentialGroup()
-                .addGap(10, 10, 10)
-                .addComponent(cocktail20, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(23, 23, 23)
-                .addComponent(cocktail19, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(25, 25, 25)
-                .addComponent(cocktail21, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(36, 36, 36))
-        );
-        coc129Layout.setVerticalGroup(
-            coc129Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(coc129Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(coc129Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(cocktail21, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
-                    .addComponent(cocktail20, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(cocktail19, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        Getränke.add(coc129, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 460, 630, 280));
-
-        coc131.setDoubleBuffered(false);
-        coc131.setEnabled(false);
-        coc131.setFocusable(false);
-        coc131.setOpaque(false);
-
-        cocktail25.setBorder(null);
-        cocktail25.setBorderPainted(false);
-        cocktail25.setContentAreaFilled(false);
-        cocktail25.setDefaultCapable(false);
-        cocktail25.setMaximumSize(new java.awt.Dimension(20, 23));
-        cocktail25.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cocktail25ActionPerformed(evt);
-            }
-        });
-
-        cocktail26.setBorder(null);
-        cocktail26.setBorderPainted(false);
-        cocktail26.setContentAreaFilled(false);
-        cocktail26.setDefaultCapable(false);
-        cocktail26.setMaximumSize(new java.awt.Dimension(20, 23));
-        cocktail26.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cocktail26ActionPerformed(evt);
-            }
-        });
-
-        cocktail27.setBorder(null);
-        cocktail27.setBorderPainted(false);
-        cocktail27.setContentAreaFilled(false);
-        cocktail27.setDefaultCapable(false);
-        cocktail27.setMaximumSize(new java.awt.Dimension(20, 23));
-        cocktail27.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cocktail27ActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout coc131Layout = new javax.swing.GroupLayout(coc131);
-        coc131.setLayout(coc131Layout);
-        coc131Layout.setHorizontalGroup(
-            coc131Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(coc131Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(cocktail26, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(25, 25, 25)
-                .addComponent(cocktail27, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(25, 25, 25)
-                .addComponent(cocktail25, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(10, 10, 10))
-        );
-        coc131Layout.setVerticalGroup(
-            coc131Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(coc131Layout.createSequentialGroup()
-                .addGap(15, 15, 15)
-                .addGroup(coc131Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(cocktail25, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(cocktail27, javax.swing.GroupLayout.DEFAULT_SIZE, 286, Short.MAX_VALUE)
-                    .addComponent(cocktail26, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        Getränke.add(coc131, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 460, -1, 240));
-
-        coc130.setDoubleBuffered(false);
-        coc130.setEnabled(false);
-        coc130.setFocusable(false);
-        coc130.setOpaque(false);
-
-        cocktail22.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Gui/Ambassador.gif"))); // NOI18N
-        cocktail22.setBorder(null);
-        cocktail22.setBorderPainted(false);
-        cocktail22.setContentAreaFilled(false);
-        cocktail22.setDefaultCapable(false);
-        cocktail22.setMaximumSize(new java.awt.Dimension(20, 23));
-        cocktail22.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cocktail22ActionPerformed(evt);
-            }
-        });
-
-        cocktail23.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Gui/Ambassador.gif"))); // NOI18N
-        cocktail23.setBorder(null);
-        cocktail23.setBorderPainted(false);
-        cocktail23.setContentAreaFilled(false);
-        cocktail23.setDefaultCapable(false);
-        cocktail23.setMaximumSize(new java.awt.Dimension(20, 23));
-        cocktail23.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cocktail23ActionPerformed(evt);
-            }
-        });
-
-        cocktail24.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Gui/Ambassador.gif"))); // NOI18N
-        cocktail24.setBorder(null);
-        cocktail24.setBorderPainted(false);
-        cocktail24.setContentAreaFilled(false);
-        cocktail24.setDefaultCapable(false);
-        cocktail24.setMaximumSize(new java.awt.Dimension(20, 23));
-        cocktail24.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cocktail24ActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout coc130Layout = new javax.swing.GroupLayout(coc130);
-        coc130.setLayout(coc130Layout);
-        coc130Layout.setHorizontalGroup(
-            coc130Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(coc130Layout.createSequentialGroup()
-                .addContainerGap(20, Short.MAX_VALUE)
-                .addComponent(cocktail23, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26)
-                .addComponent(cocktail24, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
-                .addComponent(cocktail22, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 29, 29))
-        );
-        coc130Layout.setVerticalGroup(
-            coc130Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(coc130Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(coc130Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(cocktail24, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(cocktail23, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
-                    .addComponent(cocktail22, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(18, Short.MAX_VALUE))
-        );
-
-        Getränke.add(coc130, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 470, -1, -1));
-
         Label2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Gui/Cocktailhintergrund.jpg"))); // NOI18N
         Label2.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         Label2.addAncestorListener(new javax.swing.event.AncestorListener() {
-            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
-            }
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
                 Label2AncestorAdded(evt);
             }
             public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
             }
         });
         Getränke.add(Label2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1390, 768));
@@ -1020,44 +393,11 @@ public class Hauptansichtneu extends javax.swing.JFrame {
         });
         Ausgabefenster.add(BestellButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(920, 690, 160, 40));
 
-        Hauptseite.setPreferredSize(new java.awt.Dimension(1390, 768));
-        Hauptseite.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Gui/StartHintergrund.jpg"))); // NOI18N
-        Hauptseite.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1390, 768));
-
-        Loginadminbutton.setText("jButton2");
-        Loginadminbutton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                LoginadminbuttonActionPerformed(evt);
-            }
-        });
-        Hauptseite.add(Loginadminbutton, new org.netbeans.lib.awtextra.AbsoluteConstraints(1234, 718, 150, 40));
-
-        AlkoholischeCocktailsButton.setText("Alkoholische Cocktails");
-        AlkoholischeCocktailsButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                AlkoholischeCocktailsButtonActionPerformed(evt);
-            }
-        });
-        Hauptseite.add(AlkoholischeCocktailsButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 400, 370, 100));
-
-        BenutzerdefinierteCocktailsButton.setText("Benutzerdefinierte Cocktails");
-        Hauptseite.add(BenutzerdefinierteCocktailsButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 390, 390, 120));
-
-        AlkoholfreieCocktailsButton.setText("Alkoholfreie Cocktails");
-        AlkoholfreieCocktailsButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                AlkoholfreieCocktailsButtonActionPerformed(evt);
-            }
-        });
-        Hauptseite.add(AlkoholfreieCocktailsButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 390, 380, 110));
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(Hauptseite, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(Hauptseite, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
@@ -1066,19 +406,17 @@ public class Hauptansichtneu extends javax.swing.JFrame {
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(Ausgabefenster, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Loginfenster, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(0, 0, Short.MAX_VALUE)))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(Loginfenster, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Ausgabefenster, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(0, 0, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(Hauptseite, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(Hauptseite, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
@@ -1087,12 +425,12 @@ public class Hauptansichtneu extends javax.swing.JFrame {
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(Ausgabefenster, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Loginfenster, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(0, 0, Short.MAX_VALUE)))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(Loginfenster, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Ausgabefenster, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(0, 0, Short.MAX_VALUE)))
         );
 
@@ -1100,19 +438,94 @@ public class Hauptansichtneu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void AlkoholischeCocktailsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AlkoholischeCocktailsButtonActionPerformed
+        zurzeitAlk=true;
+        setImageCocktail1(zuletztGeoeffneterAlkCocktail-3);
+        setImageCocktail2(zuletztGeoeffneterAlkCocktail-2);
+        setImageCocktail3(zuletztGeoeffneterAlkCocktail-1);
         Getränke.setVisible(true);
         Hauptseite.setVisible(false);
-        
-       
-        
-               // TODO add your handling code here:
     }//GEN-LAST:event_AlkoholischeCocktailsButtonActionPerformed
 
-    private void AlkoholfreieCocktailsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AlkoholfreieCocktailsButtonActionPerformed
-   
-        Getränke.setVisible(true);
-        Hauptseite.setVisible(false);
+    private void setImageCocktail1(int ID){
+        try{
+            ImageIcon newImage;
+            if(zurzeitAlk){
+                newImage= new ImageIcon("/home/malte/Workspace4/cocktailmaschine/JavaApplication3/src/Gui/"
+                                                 +AlkCocktail[ID].getName()
+                                                 +".gif");
+
+            }
+            else{
+                newImage= new ImageIcon("/home/malte/Workspace4/cocktailmaschine/JavaApplication3/src/Gui/"
+                                                 +keinAlkCocktail[ID].getName()
+                                                 +".gif");                
+            }
+            AlkCocktail1.setIcon(newImage);
+            AlkCocktail1.setEnabled(true);
+        }
+        catch (NullPointerException e){
+            System.out.println("kein bild für die ID: "+ID);
+            AlkCocktail1.setEnabled(false);
+            AlkCocktail1.setIcon(null);
+        }
+    }
     
+        private void setImageCocktail2(int ID){
+        try{
+            ImageIcon newImage;
+            if(zurzeitAlk){
+                newImage= new ImageIcon("/home/malte/Workspace4/cocktailmaschine/JavaApplication3/src/Gui/"
+                                                 +AlkCocktail[ID].getName()
+                                                 +".gif");
+
+            }
+            else{
+                newImage= new ImageIcon("/home/malte/Workspace4/cocktailmaschine/JavaApplication3/src/Gui/"
+                                                 +keinAlkCocktail[ID].getName()
+                                                 +".gif");                
+            }
+            AlkCocktail2.setIcon(newImage);
+            AlkCocktail2.setEnabled(true);
+        }
+        catch (NullPointerException e){
+            System.out.println("kein bild für die ID: "+ID);
+            AlkCocktail2.setEnabled(false);
+            AlkCocktail2.setIcon(null);
+        }
+    }
+        
+    private void setImageCocktail3(int ID){
+        try{
+            ImageIcon newImage;
+            if(zurzeitAlk){
+                newImage= new ImageIcon("/home/malte/Workspace4/cocktailmaschine/JavaApplication3/src/Gui/"
+                                                 +AlkCocktail[ID].getName()
+                                                 +".gif");
+
+            }
+            else{
+                newImage= new ImageIcon("/home/malte/Workspace4/cocktailmaschine/JavaApplication3/src/Gui/"
+                                                 +keinAlkCocktail[ID].getName()
+                                                 +".gif");                
+            }
+            AlkCocktail3.setIcon(newImage);
+            AlkCocktail3.setEnabled(true);
+        }
+        catch (NullPointerException e){
+            System.out.println("kein bild für die ID: "+ID);
+            AlkCocktail3.setEnabled(false);
+            AlkCocktail3.setIcon(null);
+        }
+    }   
+    
+    private void AlkoholfreieCocktailsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AlkoholfreieCocktailsButtonActionPerformed
+        zurzeitAlk=false;
+        setImageCocktail1(zuleztGeoeffneterNichtAlkCoktail-3);
+        setImageCocktail2(zuleztGeoeffneterNichtAlkCoktail-2);
+        setImageCocktail3(zuleztGeoeffneterNichtAlkCoktail-1);
+        Getränke.setVisible(true);
+        Hauptseite.setVisible(false); 
+           
         
     }//GEN-LAST:event_AlkoholfreieCocktailsButtonActionPerformed
 
@@ -1133,39 +546,11 @@ public class Hauptansichtneu extends javax.swing.JFrame {
 
     
     private void rechtsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rechtsButtonActionPerformed
-   /* Panel card = new JPanel(new CardLayout());
-        
-        JPanel container = new JPanel();
-    container.add(coc124);
-    
-    container.add(coc125);
-    container.add(coc126);
-    container.add(coc127);
-    container.add(coc128);
-    container.add(coc129);
-    container.add(coc130);
-    container.add(coc131);
-    container.add(coc132);
-    container.add(coc133);
 
-this.setVisible(true);
-this.revalidate();
-*/
-   
-    JToggleButton[] buttons = new JToggleButton[10];
-    for (int i = 0; i < buttons.length; i++) {
-    buttons[i] = new JToggleButton(("" + i+1));
-    }
-    for (int i = 0; i < buttons.length; i++) {
-    coc124.add(buttons[i]);
-    coc125.add(buttons[i]);
-    coc126.add(buttons[i]);
-  
-    }
     }//GEN-LAST:event_rechtsButtonActionPerformed
         
         
-    private void cocktail1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cocktail1ActionPerformed
+    private void AlkCocktail1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AlkCocktail1ActionPerformed
         Ausgabefenster.setVisible(true);
         Getränke.setVisible(false);
         
@@ -1177,9 +562,9 @@ this.revalidate();
             
         }*/
         AktuellAngezeigerCocktail=1;
-        Textfeld.setText(alleCocktails[0].getName()+ " " +alleCocktails[0].getPrintRezept(0));
+        Textfeld.setText(AlkCocktail[0].getName()+ " " +AlkCocktail[0].getPrintRezept(0));
         //eins.getRezept();
-    }//GEN-LAST:event_cocktail1ActionPerformed
+    }//GEN-LAST:event_AlkCocktail1ActionPerformed
 
     private void TextfeldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextfeldActionPerformed
           // TODO add your handling code here:
@@ -1188,218 +573,33 @@ this.revalidate();
     private void BestellButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BestellButtonActionPerformed
         // TODO add your handling code here:
         
-        ModbusPrint newModbusPrint =new ModbusPrint(alleCocktails[AktuellAngezeigerCocktail-1].getRezept());
+       /* ModbusPrint newModbusPrint =new ModbusPrint(alleCocktails[AktuellAngezeigerCocktail-1].getRezept());
        try{
         newModbusPrint.printSPS();
        }
        catch (IOException a){
            System.out.println(a.getMessage());
-       }
+       }*/
     }//GEN-LAST:event_BestellButtonActionPerformed
 
     private void Label2AncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_Label2AncestorAdded
-       
-        coc124.setVisible(false);
-        coc125.setVisible(false);
-        coc126.setVisible(false);
-        coc127.setVisible(false);
-        coc128.setVisible(false);
-        coc129.setVisible(false);
-        coc130.setVisible(false);
-        coc131.setVisible(false);
-        coc132.setVisible(false);
-        coc133.setVisible(false);           // TODO add your handling code here:
+           // TODO add your handling code here:
     }//GEN-LAST:event_Label2AncestorAdded
 
-    private void cocktail2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cocktail2ActionPerformed
+    private void AlkCocktail2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AlkCocktail2ActionPerformed
     Ausgabefenster.setVisible(true);
     Getränke.setVisible(false); 
     AktuellAngezeigerCocktail=2;
-    Textfeld.setText(alleCocktails[1].getName()+ " " +alleCocktails[1].getPrintRezept(1));
-    }//GEN-LAST:event_cocktail2ActionPerformed
+    Textfeld.setText(AlkCocktail[1].getName()+ " " +AlkCocktail[1].getPrintRezept(1));
+    }//GEN-LAST:event_AlkCocktail2ActionPerformed
 
-    private void cocktail3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cocktail3ActionPerformed
+    private void AlkCocktail3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AlkCocktail3ActionPerformed
     
     Ausgabefenster.setVisible(true);
     Getränke.setVisible(false); 
     AktuellAngezeigerCocktail=3;
-    Textfeld.setText(alleCocktails[2].getName()+ " " +alleCocktails[2].getPrintRezept(2)); 
-    }//GEN-LAST:event_cocktail3ActionPerformed
-
-    private void cocktail4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cocktail4ActionPerformed
-    Ausgabefenster.setVisible(true);
-    Getränke.setVisible(false); 
-    AktuellAngezeigerCocktail=4;
-    Textfeld.setText(alleCocktails[3].getName()+ " " +alleCocktails[3].getPrintRezept(3));
-    }//GEN-LAST:event_cocktail4ActionPerformed
-
-    private void cocktail6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cocktail6ActionPerformed
-    Ausgabefenster.setVisible(true);
-    Getränke.setVisible(false); 
-    AktuellAngezeigerCocktail=6;
-    Textfeld.setText(alleCocktails[5].getName()+ " " +alleCocktails[5].getPrintRezept(5));
-    }//GEN-LAST:event_cocktail6ActionPerformed
-
-    private void cocktail10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cocktail10ActionPerformed
-    Ausgabefenster.setVisible(true);
-    Getränke.setVisible(false);
-    AktuellAngezeigerCocktail=10;
-    Textfeld.setText(alleCocktails[9].getName()+ " " +alleCocktails[9].getPrintRezept(9));
-    }//GEN-LAST:event_cocktail10ActionPerformed
-
-    private void cocktail11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cocktail11ActionPerformed
-    Ausgabefenster.setVisible(true);
-    Getränke.setVisible(false); 
-    AktuellAngezeigerCocktail=11;
-    Textfeld.setText(alleCocktails[10].getName()+ " " +alleCocktails[10].getPrintRezept(10));
-    }//GEN-LAST:event_cocktail11ActionPerformed
-
-    private void cocktail12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cocktail12ActionPerformed
-    Ausgabefenster.setVisible(true);
-    Getränke.setVisible(false); 
-    AktuellAngezeigerCocktail=12;
-    Textfeld.setText(alleCocktails[11].getName()+ " " +alleCocktails[11].getPrintRezept(11));
-    }//GEN-LAST:event_cocktail12ActionPerformed
-
-    private void cocktail13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cocktail13ActionPerformed
-    Ausgabefenster.setVisible(true);
-    Getränke.setVisible(false); 
-    AktuellAngezeigerCocktail=13;
-    Textfeld.setText(alleCocktails[12].getName()+ " " +alleCocktails[12].getPrintRezept(12));
-    }//GEN-LAST:event_cocktail13ActionPerformed
-
-    private void cocktail14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cocktail14ActionPerformed
-    Ausgabefenster.setVisible(true);
-    Getränke.setVisible(false); 
-    AktuellAngezeigerCocktail=14;
-    Textfeld.setText(alleCocktails[13].getName()+ " " +alleCocktails[13].getPrintRezept(13));
-    }//GEN-LAST:event_cocktail14ActionPerformed
-
-    private void cocktail15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cocktail15ActionPerformed
-    Ausgabefenster.setVisible(true);
-    Getränke.setVisible(false); 
-    AktuellAngezeigerCocktail=15;
-    Textfeld.setText(alleCocktails[14].getName()+ " " +alleCocktails[14].getPrintRezept(14));
-    }//GEN-LAST:event_cocktail15ActionPerformed
-
-    private void cocktail16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cocktail16ActionPerformed
-    Ausgabefenster.setVisible(true);
-    Getränke.setVisible(false); 
-    AktuellAngezeigerCocktail=16;
-    Textfeld.setText(alleCocktails[15].getName()+ " " +alleCocktails[15].getPrintRezept(15));
-    }//GEN-LAST:event_cocktail16ActionPerformed
-
-    private void cocktail17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cocktail17ActionPerformed
-    Ausgabefenster.setVisible(true);
-    Getränke.setVisible(false); 
-    AktuellAngezeigerCocktail=17;
-    Textfeld.setText(alleCocktails[16].getName()+ " " +alleCocktails[16].getPrintRezept(16)); 
-    }//GEN-LAST:event_cocktail17ActionPerformed
-
-    private void cocktail18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cocktail18ActionPerformed
-    Ausgabefenster.setVisible(true);
-    Getränke.setVisible(false); 
-    AktuellAngezeigerCocktail=18;
-    Textfeld.setText(alleCocktails[17].getName()+ " " +alleCocktails[17].getPrintRezept(17));
-    }//GEN-LAST:event_cocktail18ActionPerformed
-
-    private void cocktail19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cocktail19ActionPerformed
-    Ausgabefenster.setVisible(true);
-    Getränke.setVisible(false); 
-    AktuellAngezeigerCocktail=19;
-    Textfeld.setText(alleCocktails[18].getName()+ " " +alleCocktails[18].getPrintRezept(18));
-    }//GEN-LAST:event_cocktail19ActionPerformed
-
-    private void cocktail20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cocktail20ActionPerformed
-    Ausgabefenster.setVisible(true);
-    Getränke.setVisible(false); 
-    AktuellAngezeigerCocktail=20;
-    Textfeld.setText(alleCocktails[19].getName()+ " " +alleCocktails[19].getPrintRezept(19));
-    }//GEN-LAST:event_cocktail20ActionPerformed
-
-    private void cocktail21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cocktail21ActionPerformed
-    Ausgabefenster.setVisible(true);
-    Getränke.setVisible(false); 
-    AktuellAngezeigerCocktail=21;
-    Textfeld.setText(alleCocktails[20].getName()+ " " +alleCocktails[20].getPrintRezept(20));
-    }//GEN-LAST:event_cocktail21ActionPerformed
-
-    private void cocktail22ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cocktail22ActionPerformed
-    Ausgabefenster.setVisible(true);
-    Getränke.setVisible(false); 
-    AktuellAngezeigerCocktail=22;
-    Textfeld.setText(alleCocktails[21].getName()+ " " +alleCocktails[21].getPrintRezept(21));
-    }//GEN-LAST:event_cocktail22ActionPerformed
-
-    private void cocktail23ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cocktail23ActionPerformed
-    Ausgabefenster.setVisible(true);
-    Getränke.setVisible(false); 
-    AktuellAngezeigerCocktail=23;
-    Textfeld.setText(alleCocktails[22].getName()+ " " +alleCocktails[22].getPrintRezept(22));
-    }//GEN-LAST:event_cocktail23ActionPerformed
-
-    private void cocktail24ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cocktail24ActionPerformed
-    Ausgabefenster.setVisible(true);
-    Getränke.setVisible(false); 
-    AktuellAngezeigerCocktail=24;
-    Textfeld.setText(alleCocktails[23].getName()+ " " +alleCocktails[23].getPrintRezept(23));
-    }//GEN-LAST:event_cocktail24ActionPerformed
-
-    private void cocktail25ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cocktail25ActionPerformed
-    Ausgabefenster.setVisible(true);
-    Getränke.setVisible(false); 
-    AktuellAngezeigerCocktail=25;
-    Textfeld.setText(alleCocktails[24].getName()+ " " +alleCocktails[24].getPrintRezept(24));
-    }//GEN-LAST:event_cocktail25ActionPerformed
-
-    private void cocktail26ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cocktail26ActionPerformed
-    Ausgabefenster.setVisible(true);
-    Getränke.setVisible(false); 
-    AktuellAngezeigerCocktail=26;
-    Textfeld.setText(alleCocktails[25].getName()+ " " +alleCocktails[25].getPrintRezept(25));
-    }//GEN-LAST:event_cocktail26ActionPerformed
-
-    private void cocktail27ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cocktail27ActionPerformed
-    Ausgabefenster.setVisible(true);
-    Getränke.setVisible(false); 
-    AktuellAngezeigerCocktail=27;
-    Textfeld.setText(alleCocktails[26].getName()+ " " +alleCocktails[26].getPrintRezept(26));  
-    }//GEN-LAST:event_cocktail27ActionPerformed
-
-    private void cocktail28ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cocktail28ActionPerformed
-    Ausgabefenster.setVisible(true);
-    Getränke.setVisible(false); 
-    AktuellAngezeigerCocktail=28;
-    Textfeld.setText(alleCocktails[27].getName()+ " " +alleCocktails[27].getPrintRezept(27));
-    }//GEN-LAST:event_cocktail28ActionPerformed
-
-    private void cocktail29ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cocktail29ActionPerformed
-    Ausgabefenster.setVisible(true);
-    Getränke.setVisible(false); 
-    AktuellAngezeigerCocktail=29;
-    Textfeld.setText(alleCocktails[28].getName()+ " " +alleCocktails[28].getPrintRezept(28));       
-    }//GEN-LAST:event_cocktail29ActionPerformed
-
-    private void cocktail30ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cocktail30ActionPerformed
-    Ausgabefenster.setVisible(true);
-    Getränke.setVisible(false); 
-    AktuellAngezeigerCocktail=30;
-    Textfeld.setText(alleCocktails[29].getName()+ " " +alleCocktails[29].getPrintRezept(29));
-    }//GEN-LAST:event_cocktail30ActionPerformed
-
-    private void cocktail31ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cocktail31ActionPerformed
-    Ausgabefenster.setVisible(true);
-    Getränke.setVisible(false); 
-    AktuellAngezeigerCocktail=31;
-    Textfeld.setText(alleCocktails[30].getName()+ " " +alleCocktails[30].getPrintRezept(30));        
-    }//GEN-LAST:event_cocktail31ActionPerformed
-
-    private void cocktail5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cocktail5ActionPerformed
-    Ausgabefenster.setVisible(true);
-    Getränke.setVisible(false); 
-    AktuellAngezeigerCocktail=5;
-    Textfeld.setText(alleCocktails[4].getName()+ " " +alleCocktails[4].getPrintRezept(4));
-    }//GEN-LAST:event_cocktail5ActionPerformed
+    Textfeld.setText(AlkCocktail[2].getName()+ " " +AlkCocktail[2].getPrintRezept(2)); 
+    }//GEN-LAST:event_AlkCocktail3ActionPerformed
 
     private void rechtsButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rechtsButtonMouseClicked
 
@@ -1410,27 +610,6 @@ this.revalidate();
       Loginfenster.setVisible(true);
               // TODO add your handling code here:
     }//GEN-LAST:event_LoginadminbuttonActionPerformed
-
-    private void cocktail9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cocktail9ActionPerformed
-        Ausgabefenster.setVisible(true);
-        Getränke.setVisible(false);
-        AktuellAngezeigerCocktail=9;
-        Textfeld.setText(alleCocktails[8].getName()+ " " +alleCocktails[8].getPrintRezept(8));
-    }//GEN-LAST:event_cocktail9ActionPerformed
-
-    private void cocktail8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cocktail8ActionPerformed
-        Ausgabefenster.setVisible(true);
-        Getränke.setVisible(false);
-        AktuellAngezeigerCocktail=8;
-        Textfeld.setText(alleCocktails[7].getName()+ " " +alleCocktails[7].getPrintRezept(7));
-    }//GEN-LAST:event_cocktail8ActionPerformed
-
-    private void cocktail7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cocktail7ActionPerformed
-        Ausgabefenster.setVisible(true);
-        Getränke.setVisible(false);
-        AktuellAngezeigerCocktail=7;
-        Textfeld.setText(alleCocktails[6].getName()+ " " +alleCocktails[6].getPrintRezept(6));
-    }//GEN-LAST:event_cocktail7ActionPerformed
 
     private void jTextField5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField5ActionPerformed
         // TODO add your handling code here:
@@ -1451,6 +630,10 @@ this.revalidate();
     private void LoginzugangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LoginzugangActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_LoginzugangActionPerformed
+
+    private void linksButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_linksButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_linksButton1ActionPerformed
 
  public static void main(String args[]) {
 /* Set the Nimbus look and feel */
@@ -1486,6 +669,9 @@ this.revalidate();
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton AlkCocktail1;
+    private javax.swing.JButton AlkCocktail2;
+    private javax.swing.JButton AlkCocktail3;
     private javax.swing.JButton AlkoholfreieCocktailsButton;
     private javax.swing.JButton AlkoholischeCocktailsButton;
     private javax.swing.JPanel Ausgabefenster;
@@ -1499,47 +685,6 @@ this.revalidate();
     private javax.swing.JButton Loginzugang;
     private javax.swing.JTextField Textfeld;
     private javax.swing.JPanel coc123;
-    private javax.swing.JPanel coc124;
-    private javax.swing.JPanel coc125;
-    private javax.swing.JPanel coc126;
-    private javax.swing.JPanel coc127;
-    private javax.swing.JPanel coc128;
-    private javax.swing.JPanel coc129;
-    private javax.swing.JPanel coc130;
-    private javax.swing.JPanel coc131;
-    private javax.swing.JPanel coc132;
-    private javax.swing.JPanel coc133;
-    private javax.swing.JButton cocktail1;
-    private javax.swing.JButton cocktail10;
-    private javax.swing.JButton cocktail11;
-    private javax.swing.JButton cocktail12;
-    private javax.swing.JButton cocktail13;
-    private javax.swing.JButton cocktail14;
-    private javax.swing.JButton cocktail15;
-    private javax.swing.JButton cocktail16;
-    private javax.swing.JButton cocktail17;
-    private javax.swing.JButton cocktail18;
-    private javax.swing.JButton cocktail19;
-    private javax.swing.JButton cocktail2;
-    private javax.swing.JButton cocktail20;
-    private javax.swing.JButton cocktail21;
-    private javax.swing.JButton cocktail22;
-    private javax.swing.JButton cocktail23;
-    private javax.swing.JButton cocktail24;
-    private javax.swing.JButton cocktail25;
-    private javax.swing.JButton cocktail26;
-    private javax.swing.JButton cocktail27;
-    private javax.swing.JButton cocktail28;
-    private javax.swing.JButton cocktail29;
-    private javax.swing.JButton cocktail3;
-    private javax.swing.JButton cocktail30;
-    private javax.swing.JButton cocktail31;
-    private javax.swing.JButton cocktail4;
-    private javax.swing.JButton cocktail5;
-    private javax.swing.JButton cocktail6;
-    private javax.swing.JButton cocktail7;
-    private javax.swing.JButton cocktail8;
-    private javax.swing.JButton cocktail9;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;

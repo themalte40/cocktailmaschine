@@ -27,7 +27,7 @@ public class Cocktail {
            ,boolean alk){
        
         IntID=InitInputID;
-        StringName=StringInputName;
+        StringName=StringInputName.trim();
         StringRezept=StringInputRezept;
         StringSpeicherpfadDesBildes=StringInputSpeicherpfadDesBildes;
         this.RezeptGetraenkename = Rezept;
