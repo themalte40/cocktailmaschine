@@ -27,6 +27,7 @@ public class Hauptansichtneu extends javax.swing.JFrame {
     private boolean zurzeitAlk;
     private Cocktail[] AlkCocktail = new Cocktail[60];
     private Cocktail[] keinAlkCocktail = new Cocktail [60];
+    public static final String BasisPfad="/home/malte/Workspace3/cocktailmaschine/JavaApplication3";
     
     
     public Hauptansichtneu() {
@@ -450,13 +451,13 @@ public class Hauptansichtneu extends javax.swing.JFrame {
         try{
             ImageIcon newImage;
             if(zurzeitAlk){
-                newImage= new ImageIcon("/home/malte/Workspace4/cocktailmaschine/JavaApplication3/src/Gui/"
+                newImage= new ImageIcon(BasisPfad+"/Cocktails/Bilder/"
                                                  +AlkCocktail[ID].getName()
                                                  +".gif");
 
             }
             else{
-                newImage= new ImageIcon("/home/malte/Workspace4/cocktailmaschine/JavaApplication3/src/Gui/"
+                newImage= new ImageIcon(BasisPfad+"/Cocktails/Bilder/"
                                                  +keinAlkCocktail[ID].getName()
                                                  +".gif");                
             }
@@ -474,13 +475,13 @@ public class Hauptansichtneu extends javax.swing.JFrame {
         try{
             ImageIcon newImage;
             if(zurzeitAlk){
-                newImage= new ImageIcon("/home/malte/Workspace4/cocktailmaschine/JavaApplication3/src/Gui/"
+                newImage= new ImageIcon(BasisPfad+"/Cocktails/Bilder/"
                                                  +AlkCocktail[ID].getName()
                                                  +".gif");
 
             }
             else{
-                newImage= new ImageIcon("/home/malte/Workspace4/cocktailmaschine/JavaApplication3/src/Gui/"
+                newImage= new ImageIcon(BasisPfad+"/Cocktails/Bilder/"
                                                  +keinAlkCocktail[ID].getName()
                                                  +".gif");                
             }
@@ -498,13 +499,13 @@ public class Hauptansichtneu extends javax.swing.JFrame {
         try{
             ImageIcon newImage;
             if(zurzeitAlk){
-                newImage= new ImageIcon("/home/malte/Workspace4/cocktailmaschine/JavaApplication3/src/Gui/"
+                newImage= new ImageIcon(BasisPfad+"/Cocktails/Bilder/"
                                                  +AlkCocktail[ID].getName()
                                                  +".gif");
 
             }
             else{
-                newImage= new ImageIcon("/home/malte/Workspace4/cocktailmaschine/JavaApplication3/src/Gui/"
+                newImage= new ImageIcon(BasisPfad+"/Cocktails/Bilder/"
                                                  +keinAlkCocktail[ID].getName()
                                                  +".gif");                
             }

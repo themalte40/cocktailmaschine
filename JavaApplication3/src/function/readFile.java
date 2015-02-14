@@ -9,7 +9,11 @@ package function;
 * @author muuuh
 */
 import java.io.*;
+import Gui.Hauptansichtneu;
+
 public class readFile {
+
+    private String BasisPfad=Hauptansichtneu.BasisPfad+"/Cocktails/rezepte/";
 /**
 * Initaialsierung der Komponenten
 * zum Einlesen der Cocktaildatenbank
@@ -36,7 +40,7 @@ public class readFile {
     */
     public readFile( Boolean Rezept){
         try{
-        StatusEinlesen = new FileReader("/home/malte/Schreibtisch/toot/stat.md");
+        StatusEinlesen = new FileReader(BasisPfad+"stat.md");
         InputStatus = new BufferedReader(StatusEinlesen);
         }
         catch (FileNotFoundException e){
@@ -52,14 +56,14 @@ Wenn nur der Staus abgefragt werden soll sollen nicht die rezepte eingelesen wer
         }
         if (Rezept){
             try{
-            CocktailEinlesen = new FileReader("/home/malte/Schreibtisch/toot/meep"+StringStatus[0]+".md");
+            CocktailEinlesen = new FileReader(BasisPfad+"meep"+StringStatus[0]+".md");
             InputCocktailInfo = new BufferedReader(CocktailEinlesen);
             }
             catch (FileNotFoundException b){
                 System.out.println("muuuh");
             }
             try{
-                RezeptEinlesen = new FileReader("/home/malte/Schreibtisch/toot/meep"+StringStatus[0]+".mdr");
+                RezeptEinlesen = new FileReader(BasisPfad+"meep"+StringStatus[0]+".mdr");
                 InputRezeptInfo = new BufferedReader(RezeptEinlesen);
             }
             catch (FileNotFoundException e){
