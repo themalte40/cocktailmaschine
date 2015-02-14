@@ -60,7 +60,7 @@ Wenn nur der Staus abgefragt werden soll sollen nicht die rezepte eingelesen wer
             InputCocktailInfo = new BufferedReader(CocktailEinlesen);
             }
             catch (FileNotFoundException b){
-                System.out.println("muuuh");
+                System.out.println("no meepx.md in directory");
             }
             try{
                 RezeptEinlesen = new FileReader(BasisPfad+"meep"+StringStatus[0]+".mdr");
