@@ -8,9 +8,12 @@ package Gui;
 //noobie noob noop
 
 import Cocktail.*;
+
 import function.*;
 import java.io.IOException;
+
 import javax.swing.*;
+
 
 /**
  *
@@ -21,13 +24,15 @@ public class Hauptansichtneu extends javax.swing.JFrame {
     /**
      * Creates new form Hauptansichtneu
  */
+   
+    
     private int AktuellAngezeigerCocktail=0;
     private int zuletztGeoeffneterAlkCocktail=3;
     private int zuleztGeoeffneterNichtAlkCoktail=3;
     private boolean zurzeitAlk;
     private Cocktail[] AlkCocktail = new Cocktail[60];
     private Cocktail[] keinAlkCocktail = new Cocktail [60];
-    public static final String BasisPfad="/home/malte/Workspace3/cocktailmaschine/JavaApplication3";
+    public static final String BasisPfad="/home/malte/Workspace5/cocktailmaschine/JavaApplication3";
     
     
     public Hauptansichtneu() {
@@ -35,9 +40,16 @@ public class Hauptansichtneu extends javax.swing.JFrame {
         initComponents();
         Getränke.setVisible(false);      
         Ausgabefenster.setVisible(false);
-        Loginfenster.setVisible(false);       
+        Loginpanel.setVisible(false);    
+        Adminbereich.setVisible(false); 
+        adminhinzu.setVisible(false);
+        cocktailhinzu.setVisible(false);
+       
+        
+        
     }
-    
+
+     
     private void setCocktails(){
         Cocktail[] alleCocktails = new Cocktail[60];
         
@@ -86,20 +98,44 @@ public class Hauptansichtneu extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        Adminbereich = new javax.swing.JPanel();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        adminhinzu = new javax.swing.JPanel();
+        jTextField3 = new javax.swing.JTextField();
+        jTextField4 = new javax.swing.JTextField();
+        jTextField5 = new javax.swing.JTextField();
+        jTextField7 = new javax.swing.JTextField();
+        jTextField8 = new javax.swing.JTextField();
+        jTextField9 = new javax.swing.JTextField();
+        jTextField10 = new javax.swing.JTextField();
+        Vornametextfeld = new javax.swing.JTextField();
+        nachnametextfeld = new javax.swing.JTextField();
+        geburtstextfeld = new javax.swing.JTextField();
+        Passworttextfeld = new javax.swing.JTextField();
+        Geschlechttextfeld = new javax.swing.JComboBox();
+        wohntextfeld = new javax.swing.JTextField();
+        Benutzernametextfeld = new javax.swing.JTextField();
+        jButton3 = new javax.swing.JButton();
+        cocktailhinzu = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        zurück5 = new javax.swing.JButton();
+        Loginpanel = new javax.swing.JPanel();
+        Loginfenster = new javax.swing.JPanel();
+        jTextField6 = new javax.swing.JTextField();
+        jTextField1 = new javax.swing.JTextField();
+        jTextField2 = new javax.swing.JTextField();
+        Eingangsbuttonadmin = new javax.swing.JButton();
+        jFormattedTextField2 = new javax.swing.JFormattedTextField();
+        jPasswordField1 = new javax.swing.JPasswordField();
+        jLabel3 = new javax.swing.JLabel();
+        zurücklogin = new javax.swing.JButton();
         Hauptseite = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         Loginadminbutton = new javax.swing.JButton();
         AlkoholischeCocktailsButton = new javax.swing.JButton();
         BenutzerdefinierteCocktailsButton = new javax.swing.JButton();
         AlkoholfreieCocktailsButton = new javax.swing.JButton();
-        Loginfenster = new javax.swing.JPanel();
-        Loginzugang = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
-        jTextField5 = new javax.swing.JTextField();
         Getränke = new javax.swing.JPanel();
         coc123 = new javax.swing.JPanel();
         AlkCocktail1 = new javax.swing.JButton();
@@ -128,6 +164,290 @@ public class Hauptansichtneu extends javax.swing.JFrame {
         setMaximumSize(new java.awt.Dimension(1390, 768));
         setMinimumSize(new java.awt.Dimension(1390, 768));
         setResizable(false);
+
+        Adminbereich.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jButton1.setText("Neuen Cocktail hinzufügen");
+        Adminbereich.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 120, 230, 40));
+
+        jButton2.setText("Neuen Admin hinzufügen");
+        jButton2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        Adminbereich.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 120, 210, 40));
+
+        adminhinzu.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
+
+        jTextField3.setText("Vorname:");
+        jTextField3.setDisabledTextColor(new java.awt.Color(1, 1, 1));
+        jTextField3.setEnabled(false);
+
+        jTextField4.setText("Nachname:");
+        jTextField4.setDisabledTextColor(new java.awt.Color(1, 1, 1));
+        jTextField4.setEnabled(false);
+
+        jTextField5.setText("Geschlecht:");
+        jTextField5.setDisabledTextColor(new java.awt.Color(1, 1, 1));
+        jTextField5.setEnabled(false);
+
+        jTextField7.setText("Geburtsdatum (TTMMJJ):");
+        jTextField7.setDisabledTextColor(new java.awt.Color(1, 1, 1));
+        jTextField7.setEnabled(false);
+
+        jTextField8.setText("Benutzername:");
+        jTextField8.setDisabledTextColor(new java.awt.Color(1, 1, 1));
+        jTextField8.setEnabled(false);
+        jTextField8.setFocusable(false);
+
+        jTextField9.setText("Passwort:");
+        jTextField9.setDisabledTextColor(new java.awt.Color(1, 1, 1));
+        jTextField9.setEnabled(false);
+
+        jTextField10.setText("Wohnort:");
+        jTextField10.setDisabledTextColor(new java.awt.Color(1, 1, 1));
+        jTextField10.setEnabled(false);
+
+        Vornametextfeld.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                VornametextfeldActionPerformed(evt);
+            }
+        });
+
+        nachnametextfeld.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nachnametextfeldActionPerformed(evt);
+            }
+        });
+
+        Passworttextfeld.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                PassworttextfeldActionPerformed(evt);
+            }
+        });
+
+        Geschlechttextfeld.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "                     ", "männlich", "weiblich" }));
+        Geschlechttextfeld.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                GeschlechttextfeldActionPerformed(evt);
+            }
+        });
+
+        wohntextfeld.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                wohntextfeldActionPerformed(evt);
+            }
+        });
+
+        Benutzernametextfeld.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BenutzernametextfeldActionPerformed(evt);
+            }
+        });
+
+        jButton3.setText("Registrieren");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout adminhinzuLayout = new javax.swing.GroupLayout(adminhinzu);
+        adminhinzu.setLayout(adminhinzuLayout);
+        adminhinzuLayout.setHorizontalGroup(
+            adminhinzuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(adminhinzuLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(adminhinzuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(adminhinzuLayout.createSequentialGroup()
+                        .addGroup(adminhinzuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(adminhinzuLayout.createSequentialGroup()
+                                .addGroup(adminhinzuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 250, Short.MAX_VALUE)
+                                .addGroup(adminhinzuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(Benutzernametextfeld, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(Passworttextfeld, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(adminhinzuLayout.createSequentialGroup()
+                                .addGroup(adminhinzuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(adminhinzuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(jTextField3, javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jTextField4, javax.swing.GroupLayout.Alignment.LEADING))
+                                    .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 180, Short.MAX_VALUE)
+                                .addGroup(adminhinzuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(geburtstextfeld, javax.swing.GroupLayout.DEFAULT_SIZE, 119, Short.MAX_VALUE)
+                                    .addComponent(nachnametextfeld)
+                                    .addComponent(Vornametextfeld)
+                                    .addComponent(Geschlechttextfeld, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(wohntextfeld, javax.swing.GroupLayout.DEFAULT_SIZE, 119, Short.MAX_VALUE))))
+                        .addGap(0, 83, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+        adminhinzuLayout.setVerticalGroup(
+            adminhinzuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(adminhinzuLayout.createSequentialGroup()
+                .addGap(24, 24, 24)
+                .addGroup(adminhinzuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Vornametextfeld, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(adminhinzuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(nachnametextfeld, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(adminhinzuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Geschlechttextfeld, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(adminhinzuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(geburtstextfeld, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(adminhinzuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(wohntextfeld, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(adminhinzuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Benutzernametextfeld, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(adminhinzuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Passworttextfeld, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(17, Short.MAX_VALUE))
+        );
+
+        Adminbereich.add(adminhinzu, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 210, 600, -1));
+
+        cocktailhinzu.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
+        cocktailhinzu.setPreferredSize(new java.awt.Dimension(600, 300));
+
+        javax.swing.GroupLayout cocktailhinzuLayout = new javax.swing.GroupLayout(cocktailhinzu);
+        cocktailhinzu.setLayout(cocktailhinzuLayout);
+        cocktailhinzuLayout.setHorizontalGroup(
+            cocktailhinzuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 594, Short.MAX_VALUE)
+        );
+        cocktailhinzuLayout.setVerticalGroup(
+            cocktailhinzuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 284, Short.MAX_VALUE)
+        );
+
+        Adminbereich.add(cocktailhinzu, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 210, -1, 290));
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Gui/adminhintergrund.jpg"))); // NOI18N
+        Adminbereich.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+
+        zurück5.setText("jButton4");
+        zurück5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                zurück5ActionPerformed(evt);
+            }
+        });
+        Adminbereich.add(zurück5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 150, 60));
+
+        Loginpanel.setPreferredSize(new java.awt.Dimension(1390, 768));
+        Loginpanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        Loginfenster.setBackground(new java.awt.Color(195, 184, 172));
+        Loginfenster.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        Loginfenster.setForeground(new java.awt.Color(234, 180, 180));
+        Loginfenster.setCursor(new java.awt.Cursor(java.awt.Cursor.MOVE_CURSOR));
+        Loginfenster.setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
+        Loginfenster.setFont(new java.awt.Font("Abyssinica SIL", 0, 15)); // NOI18N
+
+        jTextField6.setText("Login Bereich");
+        jTextField6.setEnabled(false);
+        jTextField6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField6ActionPerformed(evt);
+            }
+        });
+
+        jTextField1.setBackground(new java.awt.Color(195, 184, 184));
+        jTextField1.setText("Benutzername:");
+        jTextField1.setEnabled(false);
+
+        jTextField2.setBackground(new java.awt.Color(184, 184, 184));
+        jTextField2.setText("Passwort:");
+        jTextField2.setEnabled(false);
+        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField2ActionPerformed(evt);
+            }
+        });
+
+        Eingangsbuttonadmin.setText("Eingang");
+        Eingangsbuttonadmin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EingangsbuttonadminActionPerformed(evt);
+            }
+        });
+
+        jFormattedTextField2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jFormattedTextField2ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout LoginfensterLayout = new javax.swing.GroupLayout(Loginfenster);
+        Loginfenster.setLayout(LoginfensterLayout);
+        LoginfensterLayout.setHorizontalGroup(
+            LoginfensterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(LoginfensterLayout.createSequentialGroup()
+                .addGap(172, 172, 172)
+                .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(LoginfensterLayout.createSequentialGroup()
+                .addGap(341, 341, 341)
+                .addComponent(Eingangsbuttonadmin, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(LoginfensterLayout.createSequentialGroup()
+                .addGap(36, 36, 36)
+                .addGroup(LoginfensterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(75, 75, 75)
+                .addGroup(LoginfensterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jFormattedTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))
+        );
+        LoginfensterLayout.setVerticalGroup(
+            LoginfensterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(LoginfensterLayout.createSequentialGroup()
+                .addGap(12, 12, 12)
+                .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(37, 37, 37)
+                .addGroup(LoginfensterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jFormattedTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(22, 22, 22)
+                .addGroup(LoginfensterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(32, 32, 32)
+                .addComponent(Eingangsbuttonadmin, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+
+        Loginpanel.add(Loginfenster, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 330, 450, 250));
+
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Gui/StartHintergrund.jpg"))); // NOI18N
+        Loginpanel.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1390, 768));
+
+        zurücklogin.setText("ZürückLoginfenster");
+        zurücklogin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                zurückloginActionPerformed(evt);
+            }
+        });
+        Loginpanel.add(zurücklogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 1390, 768));
 
         Hauptseite.setPreferredSize(new java.awt.Dimension(1390, 768));
         Hauptseite.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -161,101 +481,6 @@ public class Hauptansichtneu extends javax.swing.JFrame {
             }
         });
         Hauptseite.add(AlkoholfreieCocktailsButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 390, 380, 110));
-
-        Loginfenster.setForeground(new java.awt.Color(226, 37, 37));
-        Loginfenster.setPreferredSize(new java.awt.Dimension(1390, 768));
-
-        Loginzugang.setText("Zugang");
-        Loginzugang.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                LoginzugangActionPerformed(evt);
-            }
-        });
-
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Gui/StartHintergrund.jpg"))); // NOI18N
-        jLabel2.setVerifyInputWhenFocusTarget(false);
-
-        jTextField1.setEditable(false);
-        jTextField1.setText("Passwort:");
-        jTextField1.setEnabled(false);
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
-            }
-        });
-
-        jTextField3.setEditable(false);
-        jTextField3.setText("Benutzername:");
-        jTextField3.setEnabled(false);
-
-        jTextField4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField4ActionPerformed(evt);
-            }
-        });
-        jTextField4.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                jTextField4KeyPressed(evt);
-            }
-        });
-
-        jTextField5.setText("Adminebene - Login");
-        jTextField5.setEnabled(false);
-        jTextField5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField5ActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout LoginfensterLayout = new javax.swing.GroupLayout(Loginfenster);
-        Loginfenster.setLayout(LoginfensterLayout);
-        LoginfensterLayout.setHorizontalGroup(
-            LoginfensterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(LoginfensterLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(LoginfensterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(57, 57, 57)
-                .addGroup(LoginfensterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(LoginfensterLayout.createSequentialGroup()
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 1405, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(LoginfensterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(LoginfensterLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(145, 145, 145))
-                    .addGroup(LoginfensterLayout.createSequentialGroup()
-                        .addGap(1526, 1526, 1526)
-                        .addComponent(Loginzugang, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-        );
-        LoginfensterLayout.setVerticalGroup(
-            LoginfensterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, LoginfensterLayout.createSequentialGroup()
-                .addGroup(LoginfensterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, LoginfensterLayout.createSequentialGroup()
-                        .addComponent(Loginzugang, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(48, 48, 48))
-                    .addGroup(LoginfensterLayout.createSequentialGroup()
-                        .addGroup(LoginfensterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(LoginfensterLayout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jLabel2))
-                        .addGap(29, 29, 29)))
-                .addGroup(LoginfensterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField3)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(25, 25, 25)
-                .addGroup(LoginfensterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(124, 124, 124))
-        );
 
         Getränke.setMinimumSize(new java.awt.Dimension(1390, 768));
         Getränke.setPreferredSize(new java.awt.Dimension(1390, 768));
@@ -327,12 +552,12 @@ public class Hauptansichtneu extends javax.swing.JFrame {
         Label2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Gui/Cocktailhintergrund.jpg"))); // NOI18N
         Label2.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         Label2.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
                 Label2AncestorAdded(evt);
             }
             public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
-            }
-            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
             }
         });
         Getränke.add(Label2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1390, 768));
@@ -350,7 +575,7 @@ public class Hauptansichtneu extends javax.swing.JFrame {
                 linksButtonActionPerformed(evt);
             }
         });
-        Getränke.add(linksButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 540, -1, 130));
+        Getränke.add(linksButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 540, 120, 130));
 
         rechtsButton.setText("rechtsButton");
         rechtsButton.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -407,12 +632,17 @@ public class Hauptansichtneu extends javax.swing.JFrame {
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(Loginfenster, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Ausgabefenster, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(0, 0, Short.MAX_VALUE)))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(Ausgabefenster, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Loginpanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(Adminbereich, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(0, 0, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
@@ -426,12 +656,17 @@ public class Hauptansichtneu extends javax.swing.JFrame {
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(Loginfenster, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Ausgabefenster, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(0, 0, Short.MAX_VALUE)))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(Ausgabefenster, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Loginpanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(Adminbereich, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(0, 0, Short.MAX_VALUE)))
         );
 
@@ -450,10 +685,12 @@ public class Hauptansichtneu extends javax.swing.JFrame {
     private void setImageCocktail1(int ID){
         try{
             ImageIcon newImage;
+            
             if(zurzeitAlk){
                 newImage= new ImageIcon(BasisPfad+"/Cocktails/Bilder/"
                                                  +AlkCocktail[ID].getName()
                                                  +".gif");
+              
 
             }
             else{
@@ -463,6 +700,7 @@ public class Hauptansichtneu extends javax.swing.JFrame {
             }
             AlkCocktail1.setIcon(newImage);
             AlkCocktail1.setEnabled(true);
+          
         }
         catch (NullPointerException e){
             System.out.println("kein bild für die ID: "+ID);
@@ -471,7 +709,7 @@ public class Hauptansichtneu extends javax.swing.JFrame {
         }
     }
     
-        private void setImageCocktail2(int ID){
+    private void setImageCocktail2(int ID){
         try{
             ImageIcon newImage;
             if(zurzeitAlk){
@@ -542,16 +780,39 @@ public class Hauptansichtneu extends javax.swing.JFrame {
     }//GEN-LAST:event_zurückAusgabefensterActionPerformed
 
     private void linksButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_linksButtonActionPerformed
-    
+    if(zurzeitAlk==true){
+        setImageCocktail1(zuletztGeoeffneterAlkCocktail-6);
+        setImageCocktail2(zuletztGeoeffneterAlkCocktail-5);
+        setImageCocktail3(zuletztGeoeffneterAlkCocktail-4);
+        zuletztGeoeffneterAlkCocktail=zuletztGeoeffneterAlkCocktail -3;
+    }
+    else{
+        setImageCocktail1(zuleztGeoeffneterNichtAlkCoktail-6);
+        setImageCocktail2(zuleztGeoeffneterNichtAlkCoktail-5);
+        setImageCocktail3(zuleztGeoeffneterNichtAlkCoktail-4);
+        zuleztGeoeffneterNichtAlkCoktail=zuleztGeoeffneterNichtAlkCoktail -3;
+        }
     }//GEN-LAST:event_linksButtonActionPerformed
 
     
     private void rechtsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rechtsButtonActionPerformed
-
+    if(zurzeitAlk==true){
+        setImageCocktail1(zuletztGeoeffneterAlkCocktail+1);
+        setImageCocktail2(zuletztGeoeffneterAlkCocktail+2);
+        setImageCocktail3(zuletztGeoeffneterAlkCocktail+3);
+        zuletztGeoeffneterAlkCocktail=zuletztGeoeffneterAlkCocktail+3;
+    }
+    else{
+        setImageCocktail1(zuleztGeoeffneterNichtAlkCoktail+1);
+        setImageCocktail2(zuleztGeoeffneterNichtAlkCoktail+2);
+        setImageCocktail3(zuleztGeoeffneterNichtAlkCoktail+3);
+        zuleztGeoeffneterNichtAlkCoktail=zuleztGeoeffneterNichtAlkCoktail +3;
+        }
     }//GEN-LAST:event_rechtsButtonActionPerformed
         
         
     private void AlkCocktail1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AlkCocktail1ActionPerformed
+        setImageCocktail1(zuletztGeoeffneterAlkCocktail-3);
         Ausgabefenster.setVisible(true);
         Getränke.setVisible(false);
         
@@ -562,7 +823,6 @@ public class Hauptansichtneu extends javax.swing.JFrame {
         catch (IIOException a){
             
         }*/
-        AktuellAngezeigerCocktail=1;
         Textfeld.setText(AlkCocktail[0].getName()+ " " +AlkCocktail[0].getPrintRezept(0));
         //eins.getRezept();
     }//GEN-LAST:event_AlkCocktail1ActionPerformed
@@ -588,18 +848,20 @@ public class Hauptansichtneu extends javax.swing.JFrame {
     }//GEN-LAST:event_Label2AncestorAdded
 
     private void AlkCocktail2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AlkCocktail2ActionPerformed
+    setImageCocktail2(zuletztGeoeffneterAlkCocktail-2);
     Ausgabefenster.setVisible(true);
     Getränke.setVisible(false); 
-    AktuellAngezeigerCocktail=2;
-    Textfeld.setText(AlkCocktail[1].getName()+ " " +AlkCocktail[1].getPrintRezept(1));
+    Textfeld.setText(AlkCocktail[0].getName()+ " " +AlkCocktail[0].getPrintRezept(0));
+    
+    
     }//GEN-LAST:event_AlkCocktail2ActionPerformed
 
     private void AlkCocktail3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AlkCocktail3ActionPerformed
-    
+     setImageCocktail2(zuletztGeoeffneterAlkCocktail-1);
     Ausgabefenster.setVisible(true);
     Getränke.setVisible(false); 
-    AktuellAngezeigerCocktail=3;
-    Textfeld.setText(AlkCocktail[2].getName()+ " " +AlkCocktail[2].getPrintRezept(2)); 
+
+    Textfeld.setText(AlkCocktail[0].getName()+ " " +AlkCocktail[0].getPrintRezept(0)); 
     }//GEN-LAST:event_AlkCocktail3ActionPerformed
 
     private void rechtsButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rechtsButtonMouseClicked
@@ -608,33 +870,75 @@ public class Hauptansichtneu extends javax.swing.JFrame {
     }//GEN-LAST:event_rechtsButtonMouseClicked
 
     private void LoginadminbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LoginadminbuttonActionPerformed
+      Loginpanel.setVisible(true);
       Loginfenster.setVisible(true);
+      Hauptseite.setVisible(false);
               // TODO add your handling code here:
     }//GEN-LAST:event_LoginadminbuttonActionPerformed
-
-    private void jTextField5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField5ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField5ActionPerformed
-
-    private void jTextField4KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField4KeyPressed
-
-    }//GEN-LAST:event_jTextField4KeyPressed
-
-    private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField4ActionPerformed
-
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
-
-    private void LoginzugangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LoginzugangActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_LoginzugangActionPerformed
 
     private void linksButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_linksButton1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_linksButton1ActionPerformed
+
+    private void zurückloginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_zurückloginActionPerformed
+    Loginpanel.setVisible(false); 
+    Hauptseite.setVisible(true);// TODO add your handling code here:
+    }//GEN-LAST:event_zurückloginActionPerformed
+
+    private void EingangsbuttonadminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EingangsbuttonadminActionPerformed
+        Adminbereich.setVisible(true);
+        Loginpanel.setVisible(false);   // TODO add your handling code here:
+    }//GEN-LAST:event_EingangsbuttonadminActionPerformed
+
+    private void jTextField6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField6ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField6ActionPerformed
+
+    private void jFormattedTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedTextField2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jFormattedTextField2ActionPerformed
+
+    private void nachnametextfeldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nachnametextfeldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_nachnametextfeldActionPerformed
+
+    private void PassworttextfeldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PassworttextfeldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_PassworttextfeldActionPerformed
+
+    private void GeschlechttextfeldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GeschlechttextfeldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_GeschlechttextfeldActionPerformed
+
+    private void wohntextfeldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_wohntextfeldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_wohntextfeldActionPerformed
+
+    private void BenutzernametextfeldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BenutzernametextfeldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BenutzernametextfeldActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    adminhinzu.setVisible(true);        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void zurück5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_zurück5ActionPerformed
+       Adminbereich.setVisible(false);
+        Hauptseite.setVisible(true);   
+    }//GEN-LAST:event_zurück5ActionPerformed
+
+    private void VornametextfeldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VornametextfeldActionPerformed
+    Benutzer benutzer  = new Benutzer();
+    benutzer.setName(Action.NAME);
+    }//GEN-LAST:event_VornametextfeldActionPerformed
+
+    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField2ActionPerformed
 
  public static void main(String args[]) {
 /* Set the Nimbus look and feel */
@@ -642,34 +946,36 @@ public class Hauptansichtneu extends javax.swing.JFrame {
 /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
 * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
 */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-            if ("Nimbus".equals(info.getName())) {
-            javax.swing.UIManager.setLookAndFeel(info.getClassName());
-        break;
-         }
-    }       
-    } catch (ClassNotFoundException ex) {
-    java.util.logging.Logger.getLogger(Hauptansichtneu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-    } catch (InstantiationException ex) {
-    java.util.logging.Logger.getLogger(Hauptansichtneu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-    } catch (IllegalAccessException ex) {
-    java.util.logging.Logger.getLogger(Hauptansichtneu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-    } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-    java.util.logging.Logger.getLogger(Hauptansichtneu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+ try {
+for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+if ("Nimbus".equals(info.getName())) {
+javax.swing.UIManager.setLookAndFeel(info.getClassName());
+break;
+}
+}
+} catch (ClassNotFoundException ex) {
+java.util.logging.Logger.getLogger(Hauptansichtneu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+} catch (InstantiationException ex) {
+java.util.logging.Logger.getLogger(Hauptansichtneu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+} catch (IllegalAccessException ex) {
+java.util.logging.Logger.getLogger(Hauptansichtneu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+} catch (javax.swing.UnsupportedLookAndFeelException ex) {
+java.util.logging.Logger.getLogger(Hauptansichtneu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 }
 //</editor-fold>
 /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                Hauptansichtneu neu = new Hauptansichtneu();
-                neu.setVisible(true);
-                }
-            });
-        }
+java.awt.EventQueue.invokeLater(new Runnable() {
+public void run() {
+Hauptansichtneu neu = new Hauptansichtneu();
+neu.setVisible(true);
+}
+});
+}
+        
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel Adminbereich;
     private javax.swing.JButton AlkCocktail1;
     private javax.swing.JButton AlkCocktail2;
     private javax.swing.JButton AlkCocktail3;
@@ -677,26 +983,49 @@ public class Hauptansichtneu extends javax.swing.JFrame {
     private javax.swing.JButton AlkoholischeCocktailsButton;
     private javax.swing.JPanel Ausgabefenster;
     private javax.swing.JButton BenutzerdefinierteCocktailsButton;
+    private javax.swing.JTextField Benutzernametextfeld;
     private javax.swing.JButton BestellButton;
+    private javax.swing.JButton Eingangsbuttonadmin;
+    private javax.swing.JComboBox Geschlechttextfeld;
     private javax.swing.JPanel Getränke;
     private javax.swing.JPanel Hauptseite;
     private javax.swing.JLabel Label2;
     private javax.swing.JButton Loginadminbutton;
     private javax.swing.JPanel Loginfenster;
-    private javax.swing.JButton Loginzugang;
+    private javax.swing.JPanel Loginpanel;
+    private javax.swing.JTextField Passworttextfeld;
     private javax.swing.JTextField Textfeld;
+    private javax.swing.JTextField Vornametextfeld;
+    private javax.swing.JPanel adminhinzu;
     private javax.swing.JPanel coc123;
+    private javax.swing.JPanel cocktailhinzu;
+    private javax.swing.JTextField geburtstextfeld;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JFormattedTextField jFormattedTextField2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextField10;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;
+    private javax.swing.JTextField jTextField6;
+    private javax.swing.JTextField jTextField7;
+    private javax.swing.JTextField jTextField8;
+    private javax.swing.JTextField jTextField9;
     private javax.swing.JToggleButton linksButton;
+    private javax.swing.JTextField nachnametextfeld;
     private javax.swing.JToggleButton rechtsButton;
+    private javax.swing.JTextField wohntextfeld;
     private javax.swing.JButton zurück;
+    private javax.swing.JButton zurück5;
     private javax.swing.JButton zurückAusgabefenster;
+    private javax.swing.JButton zurücklogin;
     // End of variables declaration//GEN-END:variables
 }
