@@ -12,4 +12,3 @@
 12_N:JingleJuice: 10;
 13_J:LimeGinFizz: 5 8;
 14_J:Magarita: 7 1;
-15_N:MaiTaiLight: 8 9;
