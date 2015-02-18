@@ -6,6 +6,9 @@
         -Anzeige
         -cocktail wird erstellt
         -cocktail kann nicht erstellt werden
+        -frame richtig
+        -Passwort wieder löschen
+        
    --> Restliche buttens mit funktion belegen
 
 -> Malte
