@@ -1,14 +1,11 @@
  ------ TO DO------
 
 -> Dennis
-   -->Admin Ebene:
-	-anmelden
+   -->Admin Ebene
 	-Rezept ändern
-	-Eingabemaske
-   --> Bilder fertig stellen
-   --> links rechts wechseln:
-	evt die Pfeile nicht ins Hintergrundbild sondern
-	als Icon auf den Button
+        -Anzeige
+        -cocktail wird erstellt
+        -cocktail kann nicht erstellt werden
    --> Restliche buttens mit funktion belegen
 
 -> Malte
@@ -16,6 +13,10 @@
 	- Getränke auffüllen fuktion
    -->beim modbusprint überprüfen ob genügend
       getränk da ist
+   -->Rezept anpassen
+   --> links rechts wechseln:
+	evt die Pfeile nicht ins Hintergrundbild sondern
+	als Icon auf den Button
+
 -> beide?
-	Rezept und cocktailname richtig anzeigen
 	Bugfixing
