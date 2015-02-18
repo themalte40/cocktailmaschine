@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package SQL;
+import Gui.Hauptansichtneu;
 import java.sql.*;
 import javax.swing.*;
 /**
@@ -17,7 +18,7 @@ public class javaconnect {
         
        try{
             Class.forName("org.sqlite.JDBC");
-             Connection conn = DriverManager.getConnection("jdbc:sqlite:/home/dennis/NetBeansProjects/cocktailmaschine3/JavaApplication3/Cocktails/rezepte/Benutzer.db");
+             Connection conn = DriverManager.getConnection("jdbc:sqlite:"+Hauptansichtneu.BasisPfad+"/Cocktails/rezepte/Benutzer.db");
              JOptionPane.showMessageDialog(null, "Connection ");
              return conn;
         
