@@ -16,10 +16,9 @@
 	- Getränke auffüllen fuktion
    -->beim modbusprint überprüfen ob genügend
       getränk da ist
+   -->modbusprint verhindern solange ein auftrag läuft
    -->Rezept anpassen
-   --> links rechts wechseln:
-	evt die Pfeile nicht ins Hintergrundbild sondern
-	als Icon auf den Button
 
 -> beide?
-	Bugfixing
+	-Bugfixing        
+        -Eingabemaske zum Getränke auffüllen
