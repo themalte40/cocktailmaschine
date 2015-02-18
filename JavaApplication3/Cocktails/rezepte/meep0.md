@@ -10,5 +10,5 @@
 10_N:GinRickey: 8 9;
 11_J:GinFizz: 20 ;
 12_N:JingleJuice: 10;
-13_J:LimeGinFizz: 5 8;
-14_J:Magarita: 7 1;
+13_N:LimeGinFizz: 5 8;
+14_N:Magarita: 7 1;

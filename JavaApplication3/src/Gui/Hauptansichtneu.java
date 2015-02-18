@@ -32,13 +32,13 @@ public class Hauptansichtneu extends javax.swing.JFrame {
     private int AktuellAngezeigerCocktail=0;
     private int zuletztGeoeffneterAlkCocktail=3;
     private int zuleztGeoeffneterNichtAlkCoktail=2;
-    private boolean zurzeitAlk;
-    private boolean letzteMalungerade;
-    private Cocktail[] AlkCocktail = new Cocktail[60];
-    private Cocktail[] keinAlkCocktail = new Cocktail [60];
+    private int Ansicht;
+    private Cocktail[][] AlkCocktail = new Cocktail[60][3];
+    private Cocktail[][] keinAlkCocktail = new Cocktail[60][3];
     public static final String BasisPfad="/home/malte/Workspace6/cocktailmaschine/JavaApplication3";
     private int AnzahlAlk;
     private int AnzahlkeinAlk;
+    private boolean zurzeitAlk;
     Connection conn = null;
     ResultSet rs = null;
     PreparedStatement pst=null;
@@ -65,6 +65,7 @@ public class Hauptansichtneu extends javax.swing.JFrame {
      *  @return void 
      */
     private void setCocktails(){
+        Ansicht=1;
         Cocktail[] alleCocktails = new Cocktail[60];    
         try{
           LoadBufferedCocktails load = new LoadBufferedCocktails();
@@ -75,20 +76,37 @@ public class Hauptansichtneu extends javax.swing.JFrame {
         }        
         System.out.println("-----------------------------");
         int alk=0;
+        int alk1=0;
         int keinalk=0;
+        int keinalk1=0;
         try{
           for (int i=0; i<60; i++){
               System.out.println(alleCocktails[i].getBoolalk());
-              if (alleCocktails[i].getBoolalk()){
-                  System.out.println(alk+"    alk :"+alleCocktails[i].getName());
-                  AlkCocktail[alk]=alleCocktails[i];
-                  System.out.println(AlkCocktail[alk].getName());
-                  alk++;
+              if (alleCocktails[i].getBoolalk()==true){
+                  System.out.println("ALK "+alleCocktails[i].getName());
+                  AlkCocktail[alk][alk1]=alleCocktails[i];
+                  System.out.println("ALK "+AlkCocktail[alk][alk1].getName());
+                  AnzahlAlk++;
+                  if(alk1==2){
+                      alk1=0;
+                      alk++;
+                  }
+                  else{
+                      alk1++;
+                  }
               }
-              else {
-                  keinAlkCocktail[keinalk]=alleCocktails[i];
-                  System.out.println(keinalk+"   kein alk:"+keinAlkCocktail[keinalk].getName());                  
-                  keinalk++;
+              if (alleCocktails[i].getBoolalk()==false) {
+                  System.out.println("keinALK "+alleCocktails[i].getName());
+                  keinAlkCocktail[keinalk][keinalk1]=alleCocktails[i];
+                  System.out.println("keinALK "+keinAlkCocktail[keinalk][keinalk1].getName());
+                  AnzahlkeinAlk++;
+                  if(keinalk1==2){
+                      keinalk1=0;
+                      keinalk++;
+                  }
+                  else{
+                      keinalk1++;
+                  }
                 }
             }
         }
@@ -96,14 +114,7 @@ public class Hauptansichtneu extends javax.swing.JFrame {
             System.err.println(e.getMessage());
             System.out.println("alle Cocktails eingelesen");
         }
-        finally {
-            int i=0;
-            while (AlkCocktail[i]!= null)i++;
-            AnzahlAlk=i;
-            i=0;
-            while(keinAlkCocktail[i]!= null)i++;
-            AnzahlkeinAlk=i;
-        }
+
     }
 
     /**
@@ -135,8 +146,8 @@ public class Hauptansichtneu extends javax.swing.JFrame {
         Benutzernametextfeld = new javax.swing.JTextField();
         jButton3 = new javax.swing.JButton();
         cocktailhinzu = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
         zurück5 = new javax.swing.JButton();
+        jLabel7 = new javax.swing.JLabel();
         Hauptseite = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         Loginadminbutton = new javax.swing.JButton();
@@ -181,6 +192,7 @@ public class Hauptansichtneu extends javax.swing.JFrame {
         setMinimumSize(new java.awt.Dimension(1390, 768));
         setResizable(false);
 
+        Adminbereich.setMaximumSize(new java.awt.Dimension(1390, 768));
         Adminbereich.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jButton1.setText("Neuen Cocktail hinzufügen");
@@ -360,9 +372,6 @@ public class Hauptansichtneu extends javax.swing.JFrame {
 
         Adminbereich.add(cocktailhinzu, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 210, -1, 290));
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Gui/adminhintergrund.jpg"))); // NOI18N
-        Adminbereich.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
-
         zurück5.setText("jButton4");
         zurück5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -370,6 +379,12 @@ public class Hauptansichtneu extends javax.swing.JFrame {
             }
         });
         Adminbereich.add(zurück5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 150, 60));
+
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Gui/adminhintergrund.jpg"))); // NOI18N
+        jLabel7.setText("jLabel7");
+        jLabel7.setMaximumSize(new java.awt.Dimension(1390, 768));
+        jLabel7.setMinimumSize(new java.awt.Dimension(1390, 768));
+        Adminbereich.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1410, 790));
 
         Hauptseite.setPreferredSize(new java.awt.Dimension(1390, 768));
         Hauptseite.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -634,10 +649,7 @@ public class Hauptansichtneu extends javax.swing.JFrame {
                     .addComponent(Ausgabefenster, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(0, 12, Short.MAX_VALUE)))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 12, Short.MAX_VALUE)
-                    .addComponent(Adminbereich, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 12, Short.MAX_VALUE)))
+                .addComponent(Adminbereich, javax.swing.GroupLayout.DEFAULT_SIZE, 1414, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addContainerGap()
@@ -660,10 +672,7 @@ public class Hauptansichtneu extends javax.swing.JFrame {
                     .addComponent(Ausgabefenster, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(0, 12, Short.MAX_VALUE)))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 12, Short.MAX_VALUE)
-                    .addComponent(Adminbereich, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 12, Short.MAX_VALUE)))
+                .addComponent(Adminbereich, javax.swing.GroupLayout.DEFAULT_SIZE, 792, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addContainerGap()
@@ -675,12 +684,11 @@ public class Hauptansichtneu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
     
     private void AlkoholischeCocktailsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AlkoholischeCocktailsButtonActionPerformed
+        Ansicht=0;
         zurzeitAlk=true;
-        zuletztGeoeffneterAlkCocktail=3;
-        
-        setImageCocktail1(zuletztGeoeffneterAlkCocktail-2);
-        setImageCocktail2(zuletztGeoeffneterAlkCocktail-1);
-        setImageCocktail3(zuletztGeoeffneterAlkCocktail-0);            
+        setImageCocktail1(AlkCocktail[0][0].getName());
+        setImageCocktail2(AlkCocktail[0][1].getName());
+        setImageCocktail3(AlkCocktail[0][2].getName());            
 
         Getränke.setVisible(true);
         Hauptseite.setVisible(false);
@@ -693,27 +701,17 @@ public class Hauptansichtneu extends javax.swing.JFrame {
      * @return true wenn ein Cocktail gefunden wurde 
      *         false wenn nicht
      */
-    private boolean setImageCocktail1(int ID){
+    private boolean setImageCocktail1(String Name){
         try{
             ImageIcon newImage;
-            
-            if(zurzeitAlk){
                 newImage= new ImageIcon(BasisPfad+"/Cocktails/Bilder/"
-                                                 +AlkCocktail[ID-1].getName()
-                                                 +".gif");           
-
-            }
-            else{
-                newImage= new ImageIcon(BasisPfad+"/Cocktails/Bilder/"
-                                                 +keinAlkCocktail[ID-1].getName()
-                                                 +".gif");                
-            }
+                                                 +Name
+                                                 +".gif");
             AlkCocktail1.setIcon(newImage);
             AlkCocktail1.setEnabled(true);
             return true;
         }
         catch (NullPointerException e){
-            System.out.println("kein bild für die ID: "+ID);
             AlkCocktail1.setEnabled(false);
             AlkCocktail1.setIcon(null);
             return false;
@@ -728,26 +726,17 @@ public class Hauptansichtneu extends javax.swing.JFrame {
      * @return true wenn ein Cocktail gefunden wurde 
      *         false wenn nicht
      */
-    private boolean setImageCocktail2(int ID){
+    private boolean setImageCocktail2(String Name){
         try{
             ImageIcon newImage;
-            if(zurzeitAlk){
                 newImage= new ImageIcon(BasisPfad+"/Cocktails/Bilder/"
-                                                 +AlkCocktail[ID-1].getName()
+                                                 +Name
                                                  +".gif");
-
-            }
-            else{
-                newImage= new ImageIcon(BasisPfad+"/Cocktails/Bilder/"
-                                                 +keinAlkCocktail[ID-1].getName()
-                                                 +".gif");                
-            }
             AlkCocktail2.setIcon(newImage);
             AlkCocktail2.setEnabled(true);
             return true;
         }
         catch (NullPointerException e){
-            System.out.println("kein bild für die ID: "+ID);
             AlkCocktail2.setEnabled(false);
             AlkCocktail2.setIcon(null);
             return false;
@@ -761,26 +750,18 @@ public class Hauptansichtneu extends javax.swing.JFrame {
      * @return true wenn ein Cocktail gefunden wurde 
      *         false wenn nicht
      */        
-    private boolean setImageCocktail3(int ID) {
+    private boolean setImageCocktail3(String Name) {
         try{
             ImageIcon newImage;
-            if(zurzeitAlk){
                 newImage= new ImageIcon(BasisPfad+"/Cocktails/Bilder/"
-                                                 +AlkCocktail[ID-1].getName()
+                                                 +Name
                                                  +".gif");
 
-            }
-            else{
-                newImage= new ImageIcon(BasisPfad+"/Cocktails/Bilder/"
-                                                 +keinAlkCocktail[ID-1].getName()
-                                                 +".gif");                
-            }
             AlkCocktail3.setIcon(newImage);
             AlkCocktail3.setEnabled(true);
             return true;
         }
         catch (NullPointerException e){
-            System.out.println("kein bild für die ID: "+ID);
             AlkCocktail3.setEnabled(false);
             AlkCocktail3.setIcon(null);
             return false;
@@ -788,13 +769,15 @@ public class Hauptansichtneu extends javax.swing.JFrame {
     }   
     
     private void AlkoholfreieCocktailsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AlkoholfreieCocktailsButtonActionPerformed
+        Ansicht=0;
         zurzeitAlk=false;
-        zuleztGeoeffneterNichtAlkCoktail=3;
-        setImageCocktail1(zuleztGeoeffneterNichtAlkCoktail-2);
-        setImageCocktail2(zuleztGeoeffneterNichtAlkCoktail-1);
-        setImageCocktail3(zuleztGeoeffneterNichtAlkCoktail-0);
+        setImageCocktail1(keinAlkCocktail[0][0].getName());
+        setImageCocktail2(keinAlkCocktail[0][1].getName());
+        setImageCocktail3(keinAlkCocktail[0][2].getName());            
+
         Getränke.setVisible(true);
-        Hauptseite.setVisible(false); 
+        Hauptseite.setVisible(false);    
+        
     }//GEN-LAST:event_AlkoholfreieCocktailsButtonActionPerformed
 
     private void zurückActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_zurückActionPerformed
@@ -809,124 +792,151 @@ public class Hauptansichtneu extends javax.swing.JFrame {
     }//GEN-LAST:event_zurückAusgabefensterActionPerformed
 
     private void linksButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_linksButtonActionPerformed
-    try{
-        if(zurzeitAlk==true){
-                setImageCocktail1(zuletztGeoeffneterAlkCocktail-5);
-                setImageCocktail2(zuletztGeoeffneterAlkCocktail-4);
-                setImageCocktail3(zuletztGeoeffneterAlkCocktail-3);
-            zuletztGeoeffneterAlkCocktail=zuletztGeoeffneterAlkCocktail -3;
-        }
-        else{    
-                setImageCocktail1(zuleztGeoeffneterNichtAlkCoktail-5);
-                setImageCocktail2(zuleztGeoeffneterNichtAlkCoktail-4);
-                setImageCocktail3(zuleztGeoeffneterNichtAlkCoktail-3);
+        if(zurzeitAlk==true){    
+            try{
+
+                setImageCocktail1(AlkCocktail[Ansicht-1][0].getName());
+                setImageCocktail2(AlkCocktail[Ansicht-1][1].getName());
+                setImageCocktail3(AlkCocktail[Ansicht-1][2].getName());
+                Ansicht--;
             }
-    }
-    catch(ArrayIndexOutOfBoundsException e){        
+            catch (NullPointerException e){
+                Ansicht = (AnzahlAlk/3);
+                if (AnzahlAlk%3==0)Ansicht--;
+                int i=0;
+                try{
+                    setImageCocktail1(AlkCocktail[Ansicht][i].getName());
+                    i++;
+                    setImageCocktail2(AlkCocktail[Ansicht][i].getName());
+                    i++;
+                    setImageCocktail3(AlkCocktail[Ansicht][i].getName());
+                }
+                catch(NullPointerException f){
+                    if(i<2){AlkCocktail2.setEnabled(false);
+                             AlkCocktail2.setIcon(null);}
+                    if(i<=2){AlkCocktail3.setEnabled(false);
+                             AlkCocktail3.setIcon(null);}
+                }
+            }
+            catch(ArrayIndexOutOfBoundsException e){
+                Ansicht = (AnzahlAlk/3);
+                if (AnzahlAlk%3==0)Ansicht--;
+                int i=0;
+                try{
+                    setImageCocktail1(AlkCocktail[Ansicht][i].getName());
+                    i++;
+                    setImageCocktail2(AlkCocktail[Ansicht][i].getName());
+                    i++;
+                    setImageCocktail3(AlkCocktail[Ansicht][i].getName());
+                }
+                catch(NullPointerException f){
+                    if(i<2){AlkCocktail2.setEnabled(false);
+                             AlkCocktail2.setIcon(null);}
+                    if(i<=2){AlkCocktail3.setEnabled(false);
+                             AlkCocktail3.setIcon(null);}
+                }
+            }
+        }
+        //nichtalkoholische Kocktails
+        if(zurzeitAlk==false){
+            try{
+
+                setImageCocktail1(keinAlkCocktail[Ansicht-1][0].getName());
+                setImageCocktail2(keinAlkCocktail[Ansicht-1][1].getName());
+                setImageCocktail3(keinAlkCocktail[Ansicht-1][2].getName());
+                Ansicht--;
+            }
+            catch (NullPointerException e){
+                Ansicht = (AnzahlkeinAlk/3)-1;
+                setImageCocktail1(keinAlkCocktail[(AnzahlAlk/3)][0].getName());
+                setImageCocktail2(keinAlkCocktail[(AnzahlAlk/3)][1].getName());
+                setImageCocktail3(keinAlkCocktail[(AnzahlAlk/3)][2].getName());
+            }
+            catch(ArrayIndexOutOfBoundsException e){
+                Ansicht = (AnzahlAlk/3);
+                if (AnzahlAlk%3==0)Ansicht--;
+                int i=0;
+                try{
+                    setImageCocktail1(keinAlkCocktail[Ansicht][i].getName());
+                    i++;
+                    setImageCocktail2(keinAlkCocktail[Ansicht][i].getName());
+                    i++;
+                    setImageCocktail3(keinAlkCocktail[Ansicht][i].getName());
+                }
+                catch(NullPointerException f){
+                    if(i<2){AlkCocktail2.setEnabled(false);
+                             AlkCocktail2.setIcon(null);}
+                    if(i<=2){AlkCocktail3.setEnabled(false);
+                             AlkCocktail3.setIcon(null);}
+                }
+            }
             
-                if(zurzeitAlk==true){
-                    zuletztGeoeffneterAlkCocktail=AnzahlAlk+3; 
-                    
-                    if(AnzahlAlk%3==0||letzteMalungerade){
-                        letzteMalungerade=false;
-                        setImageCocktail1(zuletztGeoeffneterAlkCocktail-5);                     
-                        setImageCocktail2(zuletztGeoeffneterAlkCocktail-4);
-                        setImageCocktail3(zuletztGeoeffneterAlkCocktail-3);
-                        zuletztGeoeffneterAlkCocktail=zuletztGeoeffneterAlkCocktail-3;
-                        }else{
-                        if(AnzahlAlk%3==2){
-                            letzteMalungerade=true;
-                            setImageCocktail1(zuletztGeoeffneterAlkCocktail-5);                     
-                            setImageCocktail2(zuletztGeoeffneterAlkCocktail-4);
-                            setImageCocktail3(zuletztGeoeffneterAlkCocktail-3);
-                            zuletztGeoeffneterAlkCocktail=zuletztGeoeffneterAlkCocktail-4;
-                        }
-                        else{
-                            letzteMalungerade=true;
-                            setImageCocktail1(zuletztGeoeffneterAlkCocktail-5);                     
-                            setImageCocktail2(zuletztGeoeffneterAlkCocktail-4);
-                            setImageCocktail3(zuletztGeoeffneterAlkCocktail-3);
-                            zuletztGeoeffneterAlkCocktail=zuletztGeoeffneterAlkCocktail-5;                        
-                        }
-                    }
-        }
-        else{
-                    
-                    System.err.println(zuleztGeoeffneterNichtAlkCoktail);
-                    if(AnzahlkeinAlk%3==0||letzteMalungerade){
-                        letzteMalungerade=false;
-                        zuleztGeoeffneterNichtAlkCoktail=AnzahlkeinAlk+3;
-                        setImageCocktail1(zuleztGeoeffneterNichtAlkCoktail-5);                     
-                        setImageCocktail2(zuleztGeoeffneterNichtAlkCoktail-4);
-                        setImageCocktail3(zuleztGeoeffneterNichtAlkCoktail-3);
-                        zuleztGeoeffneterNichtAlkCoktail=zuleztGeoeffneterNichtAlkCoktail-3;
-                    }else{
-                        if(AnzahlkeinAlk%3==2){
-                            letzteMalungerade=true;
-                            zuleztGeoeffneterNichtAlkCoktail=AnzahlkeinAlk+4;
-                            setImageCocktail1(zuleztGeoeffneterNichtAlkCoktail-5);                     
-                            setImageCocktail2(zuleztGeoeffneterNichtAlkCoktail-4);
-                            setImageCocktail3(zuleztGeoeffneterNichtAlkCoktail-3);
-                            zuleztGeoeffneterNichtAlkCoktail=zuleztGeoeffneterNichtAlkCoktail-4;
-                        }
-                        else{
-                            letzteMalungerade=true;
-                            zuleztGeoeffneterNichtAlkCoktail=AnzahlkeinAlk+5;
-                            setImageCocktail1(zuleztGeoeffneterNichtAlkCoktail-5);                     
-                            setImageCocktail2(zuleztGeoeffneterNichtAlkCoktail-4);
-                            setImageCocktail3(zuleztGeoeffneterNichtAlkCoktail-3);
-                            zuleztGeoeffneterNichtAlkCoktail=zuleztGeoeffneterNichtAlkCoktail-5;                        
-                        }
-                    }
-            }
         }
     }//GEN-LAST:event_linksButtonActionPerformed
 
     
     private void rechtsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rechtsButtonActionPerformed
-    
+    int i=0;
         if(zurzeitAlk==true){
-            
-            if(setImageCocktail1(zuletztGeoeffneterAlkCocktail+1)){
-                zuletztGeoeffneterAlkCocktail++;
-                if(setImageCocktail2(zuletztGeoeffneterAlkCocktail+1)){
-                    zuletztGeoeffneterAlkCocktail++;
-                    if(setImageCocktail3(zuletztGeoeffneterAlkCocktail+1)){
-                    zuletztGeoeffneterAlkCocktail++;
-                    }                      
+            Ansicht++;            
+            try{
+                setImageCocktail1(AlkCocktail[Ansicht][i].getName());
+                i++;
+                setImageCocktail2(AlkCocktail[Ansicht][i].getName());
+                i++;
+                setImageCocktail3(AlkCocktail[Ansicht][i].getName()); 
+            }
+            catch(NullPointerException e){
+                if(i==0){
+                AlkoholischeCocktailsButtonActionPerformed(null);                    
+                }else{    
+                    if(i<2){AlkCocktail2.setEnabled(false);
+                             AlkCocktail2.setIcon(null);}
+                    if(i<=2){AlkCocktail3.setEnabled(false);
+                             AlkCocktail3.setIcon(null);}
                 }
             }
-            else AlkoholischeCocktailsButtonActionPerformed(null);
         }
-        else{
-            if(setImageCocktail1(zuleztGeoeffneterNichtAlkCoktail+1)){
-                zuleztGeoeffneterNichtAlkCoktail++;
-                if(setImageCocktail2(zuleztGeoeffneterNichtAlkCoktail+1)){
-                    zuleztGeoeffneterNichtAlkCoktail++;
-                    if(setImageCocktail3(zuleztGeoeffneterNichtAlkCoktail+1)){
-                    zuleztGeoeffneterNichtAlkCoktail++;
-                    }                      
-                }               
+        if(zurzeitAlk==false){
+            Ansicht++;
+            try{
+                setImageCocktail1(keinAlkCocktail[Ansicht][i].getName());
+                i++;
+                setImageCocktail2(keinAlkCocktail[Ansicht][i].getName());
+                i++;
+                setImageCocktail3(keinAlkCocktail[Ansicht][i].getName()); 
             }
-            else AlkoholfreieCocktailsButtonActionPerformed(null);
-            }
-        
-
+            catch(NullPointerException e){
+                if(i==0){
+                AlkoholfreieCocktailsButtonActionPerformed(null);                    
+                }else{    
+                    if(i<2){AlkCocktail2.setEnabled(false);
+                             AlkCocktail2.setIcon(null);}
+                    if(i<=2){AlkCocktail3.setEnabled(false);
+                             AlkCocktail3.setIcon(null);}
+                }
+            } 
+        }
     }//GEN-LAST:event_rechtsButtonActionPerformed
-        
+    
+    private void setAusgabefensterAlk(int ID){
+        Textfeld.setText(AlkCocktail[Ansicht][ID].getName());
+    }
+    
+    private void setAusgabefensterNichtAlk(int ID){
+        Textfeld.setText(this.keinAlkCocktail[Ansicht][ID].getName());       
+    }
         
     private void AlkCocktail1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AlkCocktail1ActionPerformed
-        Ausgabefenster.setVisible(true);
-        Getränke.setVisible(false);
         if (zurzeitAlk==true){
-            AktuellAngezeigerCocktail=zuletztGeoeffneterAlkCocktail-3;
-            Textfeld.setText(AlkCocktail[AktuellAngezeigerCocktail].getName()+ " " +AlkCocktail[AktuellAngezeigerCocktail].getPrintRezept(0));
+            setAusgabefensterAlk(0);
         }
-        else{
-            AktuellAngezeigerCocktail=zuleztGeoeffneterNichtAlkCoktail-3;
-            Textfeld.setText(keinAlkCocktail[AktuellAngezeigerCocktail].getName()+ " " +keinAlkCocktail[AktuellAngezeigerCocktail].getPrintRezept(0));
+        if(zurzeitAlk==false){
+            setAusgabefensterNichtAlk(0);
         }
-        //eins.getRezept();
+        Getränke.setVisible(false);
+        Ausgabefenster.setVisible(true);
+        
     }//GEN-LAST:event_AlkCocktail1ActionPerformed
 
     private void TextfeldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextfeldActionPerformed
@@ -934,15 +944,7 @@ public class Hauptansichtneu extends javax.swing.JFrame {
     }//GEN-LAST:event_TextfeldActionPerformed
 
     private void BestellButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BestellButtonActionPerformed
-        // TODO add your handling code here:
-        
-       /* ModbusPrint newModbusPrint =new ModbusPrint(alleCocktails[AktuellAngezeigerCocktail-1].getRezept());
-       try{
-        newModbusPrint.printSPS();
-       }
-       catch (IOException a){
-           System.out.println(a.getMessage());
-       }*/
+
     }//GEN-LAST:event_BestellButtonActionPerformed
 
     private void Label2AncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_Label2AncestorAdded
@@ -950,31 +952,25 @@ public class Hauptansichtneu extends javax.swing.JFrame {
     }//GEN-LAST:event_Label2AncestorAdded
 
     private void AlkCocktail2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AlkCocktail2ActionPerformed
-        Ausgabefenster.setVisible(true);
-        Getränke.setVisible(false);
         if (zurzeitAlk==true){
-            AktuellAngezeigerCocktail=zuletztGeoeffneterAlkCocktail-2;
-            Textfeld.setText(AlkCocktail[AktuellAngezeigerCocktail].getName()+ " " +AlkCocktail[AktuellAngezeigerCocktail].getPrintRezept(0));
+            setAusgabefensterAlk(1);
         }
-        else{
-            AktuellAngezeigerCocktail=zuleztGeoeffneterNichtAlkCoktail-2;
-            Textfeld.setText(AlkCocktail[AktuellAngezeigerCocktail].getName()+ " " +AlkCocktail[AktuellAngezeigerCocktail].getPrintRezept(0));
+        if(zurzeitAlk==false){
+            setAusgabefensterNichtAlk(1);
         }
-        
+        Getränke.setVisible(false);
+        Ausgabefenster.setVisible(true);
     }//GEN-LAST:event_AlkCocktail2ActionPerformed
 
     private void AlkCocktail3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AlkCocktail3ActionPerformed
-        Ausgabefenster.setVisible(true);
-        Getränke.setVisible(false);
         if (zurzeitAlk==true){
-            AktuellAngezeigerCocktail=zuletztGeoeffneterAlkCocktail-1;
-            Textfeld.setText(AlkCocktail[AktuellAngezeigerCocktail].getName()+ " " +AlkCocktail[AktuellAngezeigerCocktail].getPrintRezept(0));
+            setAusgabefensterAlk(2);
         }
-        else{
-            AktuellAngezeigerCocktail=zuleztGeoeffneterNichtAlkCoktail-1;
-            Textfeld.setText(AlkCocktail[AktuellAngezeigerCocktail].getName()+ " " +AlkCocktail[AktuellAngezeigerCocktail].getPrintRezept(0));
+        if(zurzeitAlk==false){
+            setAusgabefensterNichtAlk(2);
         }
-        
+        Getränke.setVisible(false);
+        Ausgabefenster.setVisible(true); 
     }//GEN-LAST:event_AlkCocktail3ActionPerformed
 
     private void rechtsButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rechtsButtonMouseClicked
@@ -1134,11 +1130,11 @@ neu.setVisible(true);
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JTextField jTextField10;
     private javax.swing.JTextField jTextField3;
