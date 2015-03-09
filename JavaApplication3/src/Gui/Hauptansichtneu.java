@@ -1275,7 +1275,7 @@ public class Hauptansichtneu extends javax.swing.JFrame {
                 i++;
                 CocName3.setText(AlkCocktail[Ansicht][i].getName());
                 i++;
-              
+              //h
                
             }
             catch(NullPointerException e){
