@@ -15,7 +15,7 @@ public class Cocktail {
    private String StringName;
    private String StringRezept;
    private String [] RezeptGetraenkename;
-   private int[] RezeptVolumen = new int[17];//ml
+   private int[] RezeptVolumen = new int[13];//ml
    private String StringSpeicherpfadDesBildes;
    private boolean alk;
    
@@ -46,7 +46,7 @@ public class Cocktail {
        return StringName;
    } 
    public String getRezept(){
-       System.out.println(StringRezept);
+       
        return StringRezept;
    }
    public String getSpeicherpfadDesBildes(){
@@ -76,5 +76,8 @@ public class Cocktail {
            a="buh";
        }
        return a;
+   }
+   public int[] getRezeptVolumen(){
+       return RezeptVolumen;
    }
 }

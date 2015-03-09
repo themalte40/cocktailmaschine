@@ -26,17 +26,13 @@ public class ModbusPrint {
     }
     
     public void printSPS() throws IOException {
-        
-        
-        
         String output;
         System.out.println("start Printing \n");
         output=DebianKommando.executeCommand("/home/pi/Schreibtisch/Workspace/run.out "+ StringModbusSPSInputNachricht, true);
         System.out.println("end Printing \n"+ output);
         if (output.contains("0")){
             throw new IOException("No Networkconnection");
-        }
-        
+        }        
     }
     
     public String get_StringModbusSPSInputNachricht(){

@@ -119,7 +119,7 @@ gelesen
         int i;
             try{
                 for(i=5;BufferCoktails[InputCoctailID-1].charAt(i)!=':'; i++){
-            }
+                }
             charRezept[0]=' ';
             for(int j=(i+1);BufferCoktails[InputCoctailID-1].charAt(j)!=';'; j++){
                 charRezept[j-i]=BufferCoktails[InputCoctailID-1].charAt(j);

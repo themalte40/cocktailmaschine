@@ -20,11 +20,6 @@ import java.awt.Color;
 import java.awt.Font;
 import javax.swing.*;
 
-/*
-
-afe
-*/
-
 public class Hauptansichtneu extends javax.swing.JFrame {
 
     /**
@@ -36,12 +31,15 @@ public class Hauptansichtneu extends javax.swing.JFrame {
     private int zuletztGeoeffneterAlkCocktail=3;
     private int zuleztGeoeffneterNichtAlkCoktail=2;
     private int Ansicht;
+    private int Cocktailbutton;
     private Cocktail[][] AlkCocktail = new Cocktail[60][3];
     private Cocktail[][] keinAlkCocktail = new Cocktail[60][3];
-    public static final String BasisPfad="/home/malte/Schreibtisch/cocktailmaschine/JavaApplication3";
+    public static final String BasisPfad="/home/malte/Workspace9/cocktailmaschine/JavaApplication3";
+    private int[] aktuellerFuellstand = new int [13];
     private int AnzahlAlk;
     private int AnzahlkeinAlk;
     private boolean zurzeitAlk;
+    private int[] InhaltImGetraenkespeicher = new int [13];
     Connection conn = null;
     ResultSet rs = null;
     PreparedStatement pst=null;
@@ -59,8 +57,6 @@ public class Hauptansichtneu extends javax.swing.JFrame {
         adminhinzu.setVisible(false);
         rezeptladen.setVisible(false);
         auffüllen.setVisible(false);
-        
- 
     }
     
     /**
@@ -80,18 +76,17 @@ public class Hauptansichtneu extends javax.swing.JFrame {
         catch (IOException e){
             System.out.println(e.getMessage());
         }        
-        System.out.println("-----------------------------");
+        System.out.println("--------------sortiere Cocktails---------------");
         int alk=0;
         int alk1=0;
         int keinalk=0;
         int keinalk1=0;
         try{
           for (int i=0; i<60; i++){
-              System.out.println(alleCocktails[i].getBoolalk());
+              System.out.println(alleCocktails[i].getBoolalk() +" "+ alleCocktails[i].getName()+" "+ alleCocktails[i].getRezept());
               if (alleCocktails[i].getBoolalk()==true){
-                  System.out.println("ALK "+alleCocktails[i].getName());
                   AlkCocktail[alk][alk1]=alleCocktails[i];
-                  System.out.println("ALK "+AlkCocktail[alk][alk1].getName());
+                  System.out.println(/*"ALK "+AlkCocktail[alk][alk1].getName() + " " + */ AlkCocktail[alk][alk1].getRezept());
                   AnzahlAlk++;
                   if(alk1==2){
                       alk1=0;
@@ -132,6 +127,21 @@ public class Hauptansichtneu extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        Getränke = new javax.swing.JPanel();
+        coc123 = new javax.swing.JPanel();
+        AlkCocktail1 = new javax.swing.JButton();
+        AlkCocktail2 = new javax.swing.JButton();
+        AlkCocktail3 = new javax.swing.JButton();
+        Label2 = new javax.swing.JLabel();
+        zurück = new javax.swing.JButton();
+        try {
+            linksButton =(javax.swing.JToggleButton)java.beans.Beans.instantiate(getClass().getClassLoader(), "Gui.Hauptansichtneu_linksButton");
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (java.io.IOException e) {
+            e.printStackTrace();
+        }
+        rechtsButton = new javax.swing.JToggleButton();
         Adminbereich = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
@@ -184,21 +194,6 @@ public class Hauptansichtneu extends javax.swing.JFrame {
         AlkoholischeCocktailsButton = new javax.swing.JButton();
         BenutzerdefinierteCocktailsButton = new javax.swing.JButton();
         AlkoholfreieCocktailsButton = new javax.swing.JButton();
-        Getränke = new javax.swing.JPanel();
-        coc123 = new javax.swing.JPanel();
-        AlkCocktail1 = new javax.swing.JButton();
-        AlkCocktail2 = new javax.swing.JButton();
-        AlkCocktail3 = new javax.swing.JButton();
-        Label2 = new javax.swing.JLabel();
-        zurück = new javax.swing.JButton();
-        try {
-            linksButton =(javax.swing.JToggleButton)java.beans.Beans.instantiate(getClass().getClassLoader(), "Gui.Hauptansichtneu_linksButton");
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        } catch (java.io.IOException e) {
-            e.printStackTrace();
-        }
-        rechtsButton = new javax.swing.JToggleButton();
         Ausgabefenster = new javax.swing.JPanel();
         Cocrezept12 = new javax.swing.JLabel();
         Cocrezept11 = new javax.swing.JLabel();
@@ -234,6 +229,118 @@ public class Hauptansichtneu extends javax.swing.JFrame {
         setBounds(new java.awt.Rectangle(0, 0, 0, 0));
         setMinimumSize(new java.awt.Dimension(1390, 768));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        Getränke.setMaximumSize(new java.awt.Dimension(1390, 768));
+        Getränke.setMinimumSize(new java.awt.Dimension(1390, 768));
+        Getränke.setPreferredSize(new java.awt.Dimension(1390, 768));
+        Getränke.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        coc123.setDoubleBuffered(false);
+        coc123.setEnabled(false);
+        coc123.setFocusable(false);
+        coc123.setOpaque(false);
+
+        AlkCocktail1.setBorder(null);
+        AlkCocktail1.setBorderPainted(false);
+        AlkCocktail1.setContentAreaFilled(false);
+        AlkCocktail1.setDefaultCapable(false);
+        AlkCocktail1.setMaximumSize(new java.awt.Dimension(20, 23));
+        AlkCocktail1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AlkCocktail1ActionPerformed(evt);
+            }
+        });
+
+        AlkCocktail2.setBorder(null);
+        AlkCocktail2.setBorderPainted(false);
+        AlkCocktail2.setContentAreaFilled(false);
+        AlkCocktail2.setDefaultCapable(false);
+        AlkCocktail2.setMaximumSize(new java.awt.Dimension(20, 23));
+        AlkCocktail2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AlkCocktail2ActionPerformed(evt);
+            }
+        });
+
+        AlkCocktail3.setBorder(null);
+        AlkCocktail3.setBorderPainted(false);
+        AlkCocktail3.setContentAreaFilled(false);
+        AlkCocktail3.setDefaultCapable(false);
+        AlkCocktail3.setMaximumSize(new java.awt.Dimension(20, 23));
+        AlkCocktail3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AlkCocktail3ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout coc123Layout = new javax.swing.GroupLayout(coc123);
+        coc123.setLayout(coc123Layout);
+        coc123Layout.setHorizontalGroup(
+            coc123Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, coc123Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(AlkCocktail1, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(25, 25, 25)
+                .addComponent(AlkCocktail2, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(25, 25, 25)
+                .addComponent(AlkCocktail3, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        coc123Layout.setVerticalGroup(
+            coc123Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, coc123Layout.createSequentialGroup()
+                .addGap(0, 12, Short.MAX_VALUE)
+                .addGroup(coc123Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(AlkCocktail2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(AlkCocktail1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(AlkCocktail3, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
+        );
+
+        Getränke.add(coc123, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 430, -1, 300));
+
+        Label2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Gui/Cocktailhintergrund.jpg"))); // NOI18N
+        Label2.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        Label2.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                Label2AncestorAdded(evt);
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
+        Getränke.add(Label2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1390, 768));
+
+        zurück.setText("Zürück");
+        zurück.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                zurückActionPerformed(evt);
+            }
+        });
+        Getränke.add(zurück, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 20, 120, 50));
+
+        linksButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                linksButtonActionPerformed(evt);
+            }
+        });
+        Getränke.add(linksButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 540, 120, 130));
+
+        rechtsButton.setText("rechtsButton");
+        rechtsButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                rechtsButtonMouseClicked(evt);
+            }
+        });
+        rechtsButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rechtsButtonActionPerformed(evt);
+            }
+        });
+        Getränke.add(rechtsButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(1021, 530, 140, 160));
+
+        getContentPane().add(Getränke, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1390, 768));
 
         Adminbereich.setMaximumSize(new java.awt.Dimension(1390, 768));
         Adminbereich.setMinimumSize(new java.awt.Dimension(1414, 792));
@@ -669,117 +776,6 @@ public class Hauptansichtneu extends javax.swing.JFrame {
         Hauptseite.add(AlkoholfreieCocktailsButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 390, 380, 110));
 
         getContentPane().add(Hauptseite, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1390, 768));
-
-        Getränke.setMaximumSize(new java.awt.Dimension(1390, 768));
-        Getränke.setMinimumSize(new java.awt.Dimension(1390, 768));
-        Getränke.setPreferredSize(new java.awt.Dimension(1390, 768));
-        Getränke.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        coc123.setDoubleBuffered(false);
-        coc123.setEnabled(false);
-        coc123.setFocusable(false);
-        coc123.setOpaque(false);
-
-        AlkCocktail1.setBorder(null);
-        AlkCocktail1.setBorderPainted(false);
-        AlkCocktail1.setContentAreaFilled(false);
-        AlkCocktail1.setDefaultCapable(false);
-        AlkCocktail1.setMaximumSize(new java.awt.Dimension(20, 23));
-        AlkCocktail1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                AlkCocktail1ActionPerformed(evt);
-            }
-        });
-
-        AlkCocktail2.setBorder(null);
-        AlkCocktail2.setBorderPainted(false);
-        AlkCocktail2.setContentAreaFilled(false);
-        AlkCocktail2.setDefaultCapable(false);
-        AlkCocktail2.setMaximumSize(new java.awt.Dimension(20, 23));
-        AlkCocktail2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                AlkCocktail2ActionPerformed(evt);
-            }
-        });
-
-        AlkCocktail3.setBorder(null);
-        AlkCocktail3.setBorderPainted(false);
-        AlkCocktail3.setContentAreaFilled(false);
-        AlkCocktail3.setDefaultCapable(false);
-        AlkCocktail3.setMaximumSize(new java.awt.Dimension(20, 23));
-        AlkCocktail3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                AlkCocktail3ActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout coc123Layout = new javax.swing.GroupLayout(coc123);
-        coc123.setLayout(coc123Layout);
-        coc123Layout.setHorizontalGroup(
-            coc123Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(coc123Layout.createSequentialGroup()
-                .addComponent(AlkCocktail1, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(25, 25, 25)
-                .addComponent(AlkCocktail2, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(25, 25, 25)
-                .addComponent(AlkCocktail3, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(10, 10, 10))
-        );
-        coc123Layout.setVerticalGroup(
-            coc123Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(coc123Layout.createSequentialGroup()
-                .addGap(15, 15, 15)
-                .addGroup(coc123Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(AlkCocktail2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(AlkCocktail1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 276, Short.MAX_VALUE)
-                    .addComponent(AlkCocktail3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(15, 15, 15))
-        );
-
-        Getränke.add(coc123, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 470, -1, 300));
-
-        Label2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Gui/Cocktailhintergrund.jpg"))); // NOI18N
-        Label2.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-        Label2.addAncestorListener(new javax.swing.event.AncestorListener() {
-            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
-            }
-            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
-                Label2AncestorAdded(evt);
-            }
-            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
-            }
-        });
-        Getränke.add(Label2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1390, 768));
-
-        zurück.setText("Zürück");
-        zurück.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                zurückActionPerformed(evt);
-            }
-        });
-        Getränke.add(zurück, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 20, 120, 50));
-
-        linksButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                linksButtonActionPerformed(evt);
-            }
-        });
-        Getränke.add(linksButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 540, 120, 130));
-
-        rechtsButton.setText("rechtsButton");
-        rechtsButton.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                rechtsButtonMouseClicked(evt);
-            }
-        });
-        rechtsButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rechtsButtonActionPerformed(evt);
-            }
-        });
-        Getränke.add(rechtsButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(1021, 530, 140, 160));
-
-        getContentPane().add(Getränke, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1390, 768));
 
         Ausgabefenster.setMaximumSize(new java.awt.Dimension(1390, 768));
         Ausgabefenster.setMinimumSize(new java.awt.Dimension(1390, 768));
@@ -1262,6 +1258,7 @@ public class Hauptansichtneu extends javax.swing.JFrame {
     }
         
     private void AlkCocktail1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AlkCocktail1ActionPerformed
+        Cocktailbutton=0;
         if (zurzeitAlk==true){
             setAusgabefensterAlk(0);
         }
@@ -1274,7 +1271,38 @@ public class Hauptansichtneu extends javax.swing.JFrame {
     }//GEN-LAST:event_AlkCocktail1ActionPerformed
 
     private void BestellButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BestellButtonActionPerformed
-
+        int [] temp;
+        int [] temp2 = new int [13] ;
+        
+        boolean genugnochda= true;
+        if(zurzeitAlk==true){
+            try{    
+                    temp = AlkCocktail[Ansicht][Cocktailbutton].getRezeptVolumen();
+                    for (int i = 0 ; i<13 ; i++){
+                        temp2[i]=aktuellerFuellstand[i]- temp [1];
+                        if( temp2[i] <= 10 ){
+                            genugnochda = false ;
+                        }
+                    if (genugnochda == true){
+                        new ModbusPrint(AlkCocktail[Ansicht][Cocktailbutton].getRezept()).printSPS();
+                        aktuellerFuellstand= temp2;
+                    }    
+                    else {
+                        //Warnfenster 
+                    }
+                }
+            }
+                
+            catch (IOException e){
+                
+            }
+        }
+        try{
+                new ModbusPrint(keinAlkCocktail[Ansicht][Cocktailbutton].getRezept()).printSPS();
+            }
+            catch (IOException e){
+                
+            }
         
     }//GEN-LAST:event_BestellButtonActionPerformed
 
@@ -1283,6 +1311,7 @@ public class Hauptansichtneu extends javax.swing.JFrame {
     }//GEN-LAST:event_Label2AncestorAdded
 
     private void AlkCocktail2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AlkCocktail2ActionPerformed
+        Cocktailbutton=1;
         if (zurzeitAlk==true){
             setAusgabefensterAlk(1);
         }
@@ -1294,6 +1323,7 @@ public class Hauptansichtneu extends javax.swing.JFrame {
     }//GEN-LAST:event_AlkCocktail2ActionPerformed
 
     private void AlkCocktail3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AlkCocktail3ActionPerformed
+        Cocktailbutton=2;
         if (zurzeitAlk==true){
             setAusgabefensterAlk(2);
         }
