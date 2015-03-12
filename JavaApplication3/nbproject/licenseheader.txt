@@ -1,0 +1,13 @@
+<#if licenseFirst??>
+${licenseFirst}
+</#if>
+${licensePrefix}Dies ist das HMI für die Cocktailmaschine der FH-Bielefeld
+${licensePrefix}Die Rechte für das Design liegen bei Dennis Demirbas
+${licensePrefix}Die Rechte für den Quelltext liegen bei Malte Mechtenberg
+${licensePrefix}Diese Software darf ohne ausdrückliche Berechtigung der oben
+${licensePrefix}genannten Inhaber nur in dem Rahmen der Cocktailmaschiene,
+${licensePrefix}welche im WS 2014/15 durch eine Projektarbeit entwickelt wurde,
+${licensePrefix}verwendet werden
+<#if licenseLast??>
+${licenseLast}
+</#if>

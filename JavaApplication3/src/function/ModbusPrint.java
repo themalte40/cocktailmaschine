@@ -19,16 +19,16 @@ public class ModbusPrint {
     private String StringCProgrammPfad;
     private LinuxInteractor DebianKommando = new LinuxInteractor();
     
-    public ModbusPrint( /*String StringCProgrammInputPfad,*/ String StringModbusInputNachricht )
+    public ModbusPrint( String StringModbusInputNachricht )
     {
-        StringModbusSPSInputNachricht=StringModbusInputNachricht;
+        StringModbusSPSInputNachricht=StringModbusInputNachricht.trim();
         //StringCProgrammPfad=StringCProgrammInputPfad;
     }
     
     public void printSPS() throws IOException {
         String output;
         System.out.println("start Printing \n");
-        output=DebianKommando.executeCommand("/home/pi/Schreibtisch/Workspace/run.out "+ StringModbusSPSInputNachricht, true);
+        output=DebianKommando.executeCommand(Hauptansichtneu.BasisPfad+"/modbus/./run.out"+ " "+StringModbusSPSInputNachricht, true);
         System.out.println("end Printing \n"+ output);
         if (output.contains("0")){
             throw new IOException("No Networkconnection");

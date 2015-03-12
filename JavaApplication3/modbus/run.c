@@ -41,7 +41,7 @@ int main(int argc, char* argv[]) {
             sscanf(argv[i], "%i", &iIn);
             wh_reg((i - 1), iIn);
         }
-        while(rh_reg(28)!=0){1=0;}
+        while(rh_reg(28)!=0){i=0;}
         return FALSE;
     }
     return TRUE;
@@ -106,4 +106,3 @@ int wh_reg(int reg, int value) {
     }
     return stat;
 }
-

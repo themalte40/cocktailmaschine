@@ -34,12 +34,13 @@ public class Hauptansichtneu extends javax.swing.JFrame {
     private int Cocktailbutton;
     private Cocktail[][] AlkCocktail = new Cocktail[60][3];
     private Cocktail[][] keinAlkCocktail = new Cocktail[60][3];
-    public static final String BasisPfad="/home/dennis/NetBeansProjects/cocktailmaschine/JavaApplication3";
+    public static final String BasisPfad="/home/pi/cocktailmaschine/JavaApplication3";
     private int[] aktuellerFuellstand = new int [13];
     private int AnzahlAlk;
     private int AnzahlkeinAlk;
     private boolean zurzeitAlk;
     private int[] InhaltImGetraenkespeicher = new int [13];
+    private String strrueren;
     Connection conn = null;
     ResultSet rs = null;
     PreparedStatement pst=null;
@@ -49,7 +50,9 @@ public class Hauptansichtneu extends javax.swing.JFrame {
         conn=javaconnect.ConnectDb();
         setCocktails();
         System.err.println("test: "+AlkCocktail[40]);
+        
         initComponents();
+        rühren.setEnabled(true);
         Getränke.setVisible(false);      
         Ausgabefenster.setVisible(false);
         Loginpanel.setVisible(false);    
@@ -129,6 +132,27 @@ public class Hauptansichtneu extends javax.swing.JFrame {
         bindingGroup = new org.jdesktop.beansbinding.BindingGroup();
 
         buttonGroup1 = new javax.swing.ButtonGroup();
+        Ausgabefenster = new javax.swing.JPanel();
+        rühren = new javax.swing.JRadioButton();
+        schütteln = new javax.swing.JRadioButton();
+        Cocrezept12 = new javax.swing.JLabel();
+        Cocrezept11 = new javax.swing.JLabel();
+        Cocrezept10 = new javax.swing.JLabel();
+        Cocrezept9 = new javax.swing.JLabel();
+        Cocrezept8 = new javax.swing.JLabel();
+        Cocrezept7 = new javax.swing.JLabel();
+        Cocrezept6 = new javax.swing.JLabel();
+        Cocrezept5 = new javax.swing.JLabel();
+        Cocrezept4 = new javax.swing.JLabel();
+        Cocrezept3 = new javax.swing.JLabel();
+        Cocrezept2 = new javax.swing.JLabel();
+        Cocrezept1 = new javax.swing.JLabel();
+        Cocrezept = new javax.swing.JLabel();
+        Cocname = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        zurückAusgabefenster = new javax.swing.JButton();
+        BestellButton = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
         Getränke = new javax.swing.JPanel();
         CocName3 = new javax.swing.JLabel();
         CocName2 = new javax.swing.JLabel();
@@ -199,27 +223,6 @@ public class Hauptansichtneu extends javax.swing.JFrame {
         AlkoholischeCocktailsButton = new javax.swing.JButton();
         BenutzerdefinierteCocktailsButton = new javax.swing.JButton();
         AlkoholfreieCocktailsButton = new javax.swing.JButton();
-        Ausgabefenster = new javax.swing.JPanel();
-        rühren = new javax.swing.JRadioButton();
-        schütteln = new javax.swing.JRadioButton();
-        Cocrezept12 = new javax.swing.JLabel();
-        Cocrezept11 = new javax.swing.JLabel();
-        Cocrezept10 = new javax.swing.JLabel();
-        Cocrezept9 = new javax.swing.JLabel();
-        Cocrezept8 = new javax.swing.JLabel();
-        Cocrezept7 = new javax.swing.JLabel();
-        Cocrezept6 = new javax.swing.JLabel();
-        Cocrezept5 = new javax.swing.JLabel();
-        Cocrezept4 = new javax.swing.JLabel();
-        Cocrezept3 = new javax.swing.JLabel();
-        Cocrezept2 = new javax.swing.JLabel();
-        Cocrezept1 = new javax.swing.JLabel();
-        Cocrezept = new javax.swing.JLabel();
-        Cocname = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        zurückAusgabefenster = new javax.swing.JButton();
-        BestellButton = new javax.swing.JButton();
-        jPanel1 = new javax.swing.JPanel();
         Loginpanel = new javax.swing.JPanel();
         Loginfenster = new javax.swing.JPanel();
         Eingangsbuttonadmin = new javax.swing.JButton();
@@ -234,10 +237,126 @@ public class Hauptansichtneu extends javax.swing.JFrame {
         setTitle("alpha");
         setBackground(new java.awt.Color(0, 0, 0));
         setBounds(new java.awt.Rectangle(0, 0, 0, 0));
-        setMaximumSize(new java.awt.Dimension(1024, 768));
         setMinimumSize(new java.awt.Dimension(1024, 768));
-        setPreferredSize(new java.awt.Dimension(1024, 768));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        Ausgabefenster.setMaximumSize(new java.awt.Dimension(1024, 768));
+        Ausgabefenster.setMinimumSize(new java.awt.Dimension(1024, 768));
+        Ausgabefenster.setPreferredSize(new java.awt.Dimension(1024, 768));
+        Ausgabefenster.setRequestFocusEnabled(false);
+        Ausgabefenster.setVerifyInputWhenFocusTarget(false);
+        Ausgabefenster.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        buttonGroup1.add(rühren);
+        rühren.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rührenActionPerformed(evt);
+            }
+        });
+        Ausgabefenster.add(rühren, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 500, 150, 30));
+
+        buttonGroup1.add(schütteln);
+
+        org.jdesktop.beansbinding.Binding binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, schütteln, org.jdesktop.beansbinding.ELProperty.create("${action.enabled}"), schütteln, org.jdesktop.beansbinding.BeanProperty.create("selected"));
+        bindingGroup.addBinding(binding);
+
+        schütteln.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                schüttelnActionPerformed(evt);
+            }
+        });
+        Ausgabefenster.add(schütteln, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 550, 180, 30));
+
+        Cocrezept12.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        Cocrezept12.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        Ausgabefenster.add(Cocrezept12, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 680, 140, 30));
+
+        Cocrezept11.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        Cocrezept11.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        Ausgabefenster.add(Cocrezept11, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 660, 140, 30));
+
+        Cocrezept10.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        Cocrezept10.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        Ausgabefenster.add(Cocrezept10, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 640, 140, 30));
+
+        Cocrezept9.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        Cocrezept9.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        Ausgabefenster.add(Cocrezept9, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 620, 140, 30));
+
+        Cocrezept8.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        Cocrezept8.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        Ausgabefenster.add(Cocrezept8, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 600, 140, 30));
+
+        Cocrezept7.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        Cocrezept7.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        Ausgabefenster.add(Cocrezept7, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 580, 140, 30));
+
+        Cocrezept6.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        Cocrezept6.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        Ausgabefenster.add(Cocrezept6, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 700, 140, 30));
+
+        Cocrezept5.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        Cocrezept5.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        Ausgabefenster.add(Cocrezept5, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 680, 140, 30));
+
+        Cocrezept4.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        Cocrezept4.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        Ausgabefenster.add(Cocrezept4, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 660, 140, 30));
+
+        Cocrezept3.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        Cocrezept3.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        Ausgabefenster.add(Cocrezept3, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 640, 140, 30));
+
+        Cocrezept2.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        Cocrezept2.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        Ausgabefenster.add(Cocrezept2, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 620, 140, 30));
+
+        Cocrezept1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        Cocrezept1.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        Ausgabefenster.add(Cocrezept1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 600, 140, 30));
+
+        Cocrezept.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        Cocrezept.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        Ausgabefenster.add(Cocrezept, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 580, 140, 30));
+
+        Cocname.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Cocname.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        Cocname.setName(""); // NOI18N
+        Ausgabefenster.add(Cocname, new org.netbeans.lib.awtextra.AbsoluteConstraints(197, 500, 390, 40));
+
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Gui/bestellhintergrund.jpg"))); // NOI18N
+        Ausgabefenster.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1390, 768));
+
+        zurückAusgabefenster.setText("Zürück");
+        zurückAusgabefenster.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                zurückAusgabefensterActionPerformed(evt);
+            }
+        });
+        Ausgabefenster.add(zurückAusgabefenster, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 150, 50));
+
+        BestellButton.setText("Bestellen");
+        BestellButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BestellButtonActionPerformed(evt);
+            }
+        });
+        Ausgabefenster.add(BestellButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 680, 180, 60));
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 460, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 170, Short.MAX_VALUE)
+        );
+
+        Ausgabefenster.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 570, 460, 170));
+
+        getContentPane().add(Ausgabefenster, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1390, 768));
 
         Getränke.setMaximumSize(new java.awt.Dimension(1024, 768));
         Getränke.setMinimumSize(new java.awt.Dimension(1024, 768));
@@ -247,7 +366,7 @@ public class Hauptansichtneu extends javax.swing.JFrame {
         CocName3.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         CocName3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
-        org.jdesktop.beansbinding.Binding binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, AlkCocktail3, org.jdesktop.beansbinding.ELProperty.create("${name}"), CocName3, org.jdesktop.beansbinding.BeanProperty.create("text"));
+        binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, AlkCocktail3, org.jdesktop.beansbinding.ELProperty.create("${name}"), CocName3, org.jdesktop.beansbinding.BeanProperty.create("text"));
         bindingGroup.addBinding(binding);
 
         Getränke.add(CocName3, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 680, 120, 60));
@@ -268,12 +387,12 @@ public class Hauptansichtneu extends javax.swing.JFrame {
         bindingGroup.addBinding(binding);
 
         CocName1.addAncestorListener(new javax.swing.event.AncestorListener() {
-            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
-            }
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
                 CocName1AncestorAdded(evt);
             }
             public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
             }
         });
         Getränke.add(CocName1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 680, 120, 60));
@@ -345,12 +464,12 @@ public class Hauptansichtneu extends javax.swing.JFrame {
         Label2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Gui/Cocktailhintergrund.jpg"))); // NOI18N
         Label2.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         Label2.addAncestorListener(new javax.swing.event.AncestorListener() {
-            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
-            }
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
                 Label2AncestorAdded(evt);
             }
             public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
             }
         });
         Getränke.add(Label2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1390, 768));
@@ -819,124 +938,6 @@ public class Hauptansichtneu extends javax.swing.JFrame {
 
         getContentPane().add(Hauptseite, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1390, 768));
 
-        Ausgabefenster.setMaximumSize(new java.awt.Dimension(1024, 768));
-        Ausgabefenster.setMinimumSize(new java.awt.Dimension(1024, 768));
-        Ausgabefenster.setPreferredSize(new java.awt.Dimension(1024, 768));
-        Ausgabefenster.setRequestFocusEnabled(false);
-        Ausgabefenster.setVerifyInputWhenFocusTarget(false);
-        Ausgabefenster.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        buttonGroup1.add(rühren);
-        rühren.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rührenActionPerformed(evt);
-            }
-        });
-        Ausgabefenster.add(rühren, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 500, 150, 30));
-
-        buttonGroup1.add(schütteln);
-
-        binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, schütteln, org.jdesktop.beansbinding.ELProperty.create("${action.enabled}"), schütteln, org.jdesktop.beansbinding.BeanProperty.create("selected"));
-        bindingGroup.addBinding(binding);
-
-        schütteln.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                schüttelnActionPerformed(evt);
-            }
-        });
-        Ausgabefenster.add(schütteln, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 550, 180, 30));
-
-        Cocrezept12.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        Cocrezept12.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-        Ausgabefenster.add(Cocrezept12, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 680, 140, 30));
-
-        Cocrezept11.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        Cocrezept11.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-        Ausgabefenster.add(Cocrezept11, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 660, 140, 30));
-
-        Cocrezept10.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        Cocrezept10.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-        Ausgabefenster.add(Cocrezept10, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 640, 140, 30));
-
-        Cocrezept9.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        Cocrezept9.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-        Ausgabefenster.add(Cocrezept9, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 620, 140, 30));
-
-        Cocrezept8.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        Cocrezept8.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-        Ausgabefenster.add(Cocrezept8, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 600, 140, 30));
-
-        Cocrezept7.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        Cocrezept7.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-        Ausgabefenster.add(Cocrezept7, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 580, 140, 30));
-
-        Cocrezept6.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        Cocrezept6.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-        Ausgabefenster.add(Cocrezept6, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 700, 140, 30));
-
-        Cocrezept5.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        Cocrezept5.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-        Ausgabefenster.add(Cocrezept5, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 680, 140, 30));
-
-        Cocrezept4.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        Cocrezept4.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-        Ausgabefenster.add(Cocrezept4, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 660, 140, 30));
-
-        Cocrezept3.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        Cocrezept3.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-        Ausgabefenster.add(Cocrezept3, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 640, 140, 30));
-
-        Cocrezept2.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        Cocrezept2.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-        Ausgabefenster.add(Cocrezept2, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 620, 140, 30));
-
-        Cocrezept1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        Cocrezept1.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-        Ausgabefenster.add(Cocrezept1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 600, 140, 30));
-
-        Cocrezept.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        Cocrezept.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-        Ausgabefenster.add(Cocrezept, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 580, 140, 30));
-
-        Cocname.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        Cocname.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        Cocname.setName(""); // NOI18N
-        Ausgabefenster.add(Cocname, new org.netbeans.lib.awtextra.AbsoluteConstraints(197, 500, 390, 40));
-
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Gui/bestellhintergrund.jpg"))); // NOI18N
-        Ausgabefenster.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1390, 768));
-
-        zurückAusgabefenster.setText("Zürück");
-        zurückAusgabefenster.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                zurückAusgabefensterActionPerformed(evt);
-            }
-        });
-        Ausgabefenster.add(zurückAusgabefenster, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 150, 50));
-
-        BestellButton.setText("Bestellen");
-        BestellButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BestellButtonActionPerformed(evt);
-            }
-        });
-        Ausgabefenster.add(BestellButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 680, 180, 60));
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 460, Short.MAX_VALUE)
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 170, Short.MAX_VALUE)
-        );
-
-        Ausgabefenster.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 570, 460, 170));
-
-        getContentPane().add(Ausgabefenster, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1390, 768));
-
         Loginpanel.setMaximumSize(new java.awt.Dimension(1024, 768));
         Loginpanel.setMinimumSize(new java.awt.Dimension(1024, 768));
         Loginpanel.setPreferredSize(new java.awt.Dimension(1024, 768));
@@ -1002,8 +1003,6 @@ public class Hauptansichtneu extends javax.swing.JFrame {
         );
 
         Loginpanel.add(Loginfenster, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 320, 450, 250));
-
-        jLabel3.setIcon(new javax.swing.ImageIcon("/home/dennis/Schreibtisch/1024x768/StartHintergrund.jpg")); // NOI18N
         Loginpanel.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1390, 768));
 
         zurücklogin.setText("ZürückLoginfenster");
@@ -1264,15 +1263,12 @@ public class Hauptansichtneu extends javax.swing.JFrame {
             Ansicht++;            
             try{
                 setImageCocktail1(AlkCocktail[Ansicht][i].getName());
-                i++;
-                setImageCocktail2(AlkCocktail[Ansicht][i].getName());
-                i++;
-                setImageCocktail3(AlkCocktail[Ansicht][i].getName());
-                i++;
                 CocName1.setText(AlkCocktail[Ansicht][i].getName());
                 i++;
+                setImageCocktail2(AlkCocktail[Ansicht][i].getName());
                 CocName2.setText(AlkCocktail[Ansicht][i].getName());
                 i++;
+                setImageCocktail3(AlkCocktail[Ansicht][i].getName());
                 CocName3.setText(AlkCocktail[Ansicht][i].getName());
                 i++;
               //h
@@ -1399,8 +1395,7 @@ public class Hauptansichtneu extends javax.swing.JFrame {
     private void BestellButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BestellButtonActionPerformed
         int [] temp;
         int [] temp2 = new int [13] ;
-        
-        boolean genugnochda= true;
+        /*boolean genugnochda= true;
         if(zurzeitAlk==true){
             try{    
                     temp = AlkCocktail[Ansicht][Cocktailbutton].getRezeptVolumen();
@@ -1410,7 +1405,8 @@ public class Hauptansichtneu extends javax.swing.JFrame {
                             genugnochda = false ;
                         }
                     if (genugnochda == true){
-                        new ModbusPrint(AlkCocktail[Ansicht][Cocktailbutton].getRezept()).printSPS();
+                        
+                        new ModbusPrint(AlkCocktail[Ansicht][Cocktailbutton].getRezept()+" "+strrueren).printSPS();
                         aktuellerFuellstand= temp2;
                     }    
                     else {
@@ -1422,9 +1418,18 @@ public class Hauptansichtneu extends javax.swing.JFrame {
             catch (IOException e){
                 
             }
-        }
+        }*/
         try{
-                new ModbusPrint(keinAlkCocktail[Ansicht][Cocktailbutton].getRezept()).printSPS();
+            System.out.println("Ansicht: "+ Ansicht);
+            System.out.println("Cocktailbutton: "+ Cocktailbutton);
+            if(zurzeitAlk == false){
+                System.out.println("SPS Nachricht: "+keinAlkCocktail[Ansicht][Cocktailbutton].getRezept()/*+" "+strrueren*/);
+                    new ModbusPrint(keinAlkCocktail[Ansicht][Cocktailbutton].getRezept().trim()+" "+strrueren).printSPS();
+            }
+            if (zurzeitAlk== true){
+                    System.out.println("SPS Nachricht: "+AlkCocktail[Ansicht][Cocktailbutton].getRezept());
+                    new ModbusPrint(AlkCocktail[Ansicht][Cocktailbutton].getRezept().trim()+" "+strrueren).printSPS();
+            }
             }
             catch (IOException e){
                 
@@ -1579,15 +1584,16 @@ public class Hauptansichtneu extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField6ActionPerformed
 
     private void schüttelnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_schüttelnActionPerformed
-  
+        strrueren = "2";  
+        System.out.println(strrueren);
     }//GEN-LAST:event_schüttelnActionPerformed
 
     private void rührenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rührenActionPerformed
-
+       strrueren = "1";
     }//GEN-LAST:event_rührenActionPerformed
 
     private void CocName1AncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_CocName1AncestorAdded
-        
+
     }//GEN-LAST:event_CocName1AncestorAdded
 
  public static void main(String args[]) {
